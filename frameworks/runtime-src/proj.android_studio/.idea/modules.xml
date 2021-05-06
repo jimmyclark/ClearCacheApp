@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/proj.android_studio.iml" filepath="$PROJECT_DIR$/proj.android_studio.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/proj.android_studio.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/proj.android_studio.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/libcocos2dx/proj.android_studio.libcocos2dx.iml" filepath="$PROJECT_DIR$/.idea/modules/libcocos2dx/proj.android_studio.libcocos2dx.iml" />
+    </modules>
+  </component>
+</project>
