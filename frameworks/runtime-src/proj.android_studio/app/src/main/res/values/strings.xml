@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name" translatable="false">ClearCacheApp</string>
+    <string-array name="gcm_sender_ids">
+        <item>872307652637</item>
+    </string-array>
+</resources>
