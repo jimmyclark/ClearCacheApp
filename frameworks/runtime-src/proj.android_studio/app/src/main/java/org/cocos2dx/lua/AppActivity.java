@@ -35,7 +35,6 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.graphics.Color;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Message;
@@ -46,17 +45,15 @@ import android.view.WindowManager;
 import com.game.MyApplication;
 import com.game.core.Cocos2dxActivityWrapper;
 import com.game.core.ConstantValue;
-import com.game.core.MainHandler;
 import com.game.core.PluginManager;
 import com.game.utils.CommonUtils;
 import com.game.utils.PermissionUtil;
 
-import com.bigfoot.clearcache.R;
+import com.app.clearcache.R;
 
 public class AppActivity extends Cocos2dxActivityWrapper {
     public final String TAG = AppActivity.class.getSimpleName();
     private View decorView = null;
-	public static MainHandler mainHandler = new MainHandler();
 
     @Override
     protected void onDestroy() {
@@ -110,8 +107,6 @@ public class AppActivity extends Cocos2dxActivityWrapper {
 
 			}
         }
-		Message canshowText = getMessageByWhat(mainHandler.SHOW_CAN_CLEAR_PROMPT_TEXT_TIMER);
-		mainHandler.sendMessage(canshowText);
     }
 
     @Override

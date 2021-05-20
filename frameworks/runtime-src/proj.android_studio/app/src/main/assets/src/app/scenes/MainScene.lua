@@ -20,6 +20,8 @@ function MainScene:ctor()
     self.m_usePreviousStr = poker.LangUtil:getText("MAIN_VIEW", "MAIN_VIEW_USE_PREVIOUS")      -- 整理前磁盘使用量
     self.m_useAfterStr    = poker.LangUtil:getText("MAIN_VIEW", "MAIN_VIEW_USE_AFTER")         -- 整理后磁盘使用量
 
+    self.m_deviceStr      = poker.LangUtil:getText("MAIN_VIEW", "MAIN_VIEW_DEVICE_NAME")       -- 设备名称: %s
+    self.m_netStr         = poker.LangUtil:getText("MAIN_VIEW", "MAIN_VIEW_NET_STATUS")        -- 网络状态: %s
     self.m_totalPromptStr = poker.LangUtil:getText("MAIN_VIEW", "MAIN_VIEW_TOTAL_SIZE")        -- 磁盘大小: %s
     self.m_totalAvailableStr = poker.LangUtil:getText("MAIN_VIEW", "MAIN_VIEW_AVALIABLE_SIZE") -- 可用空间: %s
 
@@ -53,6 +55,26 @@ function MainScene:initView()
     self.m_topStatusBg = display.newScale9Sprite(nk.Res.main_bg_top_bg, display.cx, display.top - 318, cc.size(664, 310))
     self.m_topStatusBg:addTo(self)
 
+    self.m_topStatusDeviceName = cc.ui.UILabel.new({
+                                    UILabelType = 2,
+                                    text = string.format(self.m_deviceStr, nk.Const.model),
+                                    size = 26,
+                                    color = cc.c3b(177,165,177),
+                                    align = cc.ui.TEXT_ALIGN_LEFT,
+                                })
+                                :pos(275, 220)
+                                :addTo(self.m_topStatusBg)
+
+    self.m_topStatusNetName = cc.ui.UILabel.new({
+                                    UILabelType = 2,
+                                    text = string.format(self.m_netStr, nk.Const.net),
+                                    size = 26,
+                                    color = cc.c3b(177,165,177),
+                                    align = cc.ui.TEXT_ALIGN_LEFT,
+                                })
+                                :pos(275, 155)
+                                :addTo(self.m_topStatusBg)
+
     self.m_topStatusTotalSize = cc.ui.UILabel.new({
                                     UILabelType = 2,
                                     text = string.format(self.m_totalPromptStr, self.m_totalDeviceSize),
@@ -60,7 +82,7 @@ function MainScene:initView()
                                     color = cc.c3b(177,165,177),
                                     align = cc.ui.TEXT_ALIGN_LEFT,
                                 })
-                                :pos(235, 100)
+                                :pos(275, 100)
                                 :addTo(self.m_topStatusBg)
 
     self.m_topStatusAvaliableSize = cc.ui.UILabel.new({
@@ -70,7 +92,7 @@ function MainScene:initView()
                                         color = cc.c3b(177,165,177),
                                         align = cc.ui.TEXT_ALIGN_LEFT,
                                     })
-                                    :pos(235, 45)
+                                    :pos(275, 45)
                                     :addTo(self.m_topStatusBg)
 
     self.m_topStatusDi = display.newSprite(nk.Res.main_bg_topStatus)

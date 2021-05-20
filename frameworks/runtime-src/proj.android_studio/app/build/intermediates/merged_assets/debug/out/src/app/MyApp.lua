@@ -160,6 +160,7 @@ function MyApp:initConfigThings()
         if device.platform == "windows" then
             nk.Const.model = "UnKnown"
             nk.Const.deviceId = getSitemid()
+            nk.Const.net      = "未知"
 
             nk.Const.deviceTotalSize = 0
             nk.Const.deviceAvalibleSize = 0
@@ -175,7 +176,6 @@ function MyApp:initConfigThings()
     requireRes()
 
     nk.KeypadManager = require("app.manager.KeypadManager").new()
-    nk.PopupManager = require("app.manager.PopupManager").new()
 
     if device.platform == "windows" or device.platform == "mac" then
         nk.Const.GAME_VERSION = nk.Const.DEFAULT_GAME_VERSION
@@ -223,8 +223,6 @@ function MyApp:enterScene(sceneName, args, transitionType, time, more)
     if (nk and nk.Const) then
         nk.Const.IS_CHANGING_SCENE = true
     end
-
-    nk.PopupManager:removeAllPopup()
 
     local scenePackageName = sceneName
     local sceneClass = require(scenePackageName)

@@ -31,7 +31,7 @@ import android.webkit.WebView;
 
 import com.game.core.ConstantValue;
 
-import com.bigfoot.clearcache.R;
+import com.app.clearcache.R;
 
 import org.cocos2dx.lib.Cocos2dxActivity;
 import org.cocos2dx.lib.Cocos2dxHelper;

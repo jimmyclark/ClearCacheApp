@@ -23,7 +23,7 @@ import com.game.utils.CommonUtils;
 import com.game.utils.FileUtils;
 import com.game.utils.PermissionUtil;
 import com.game.utils.PermissionViewUtils;
-import com.bigfoot.clearcache.R;
+import com.app.clearcache.R;
 
 import org.cocos2dx.lib.Cocos2dxActivity;
 import org.cocos2dx.lib.Cocos2dxHelper;
@@ -67,14 +67,6 @@ public class Function {
 				CommonUtils.putSharedString(ConstantValue.SHARED_PREFERENCE_IS_NEED_SECOND_START, "0");
 			}
 
-			if(AppActivity.mainHandler != null){
-				boolean isShowTaskTimerFlag = AppActivity.mainHandler.getClearFolderAndRemoveTaskTimer();
-				//如果已经弹出框了，就不用关闭了
-				if(isShowTaskTimerFlag){
-					return ;
-				}
-			}
-
 			if (AppActivity.startDialog != null && AppActivity.startDialog.isShowing()) {
 				if (AppActivity.startDialog.getDelayTime() > 0) {
 					new Thread(new Runnable() {
@@ -87,14 +79,6 @@ public class Function {
 							} catch (Exception e) {
 								// e.printStackTrace();
 							}
-							if(AppActivity.mainHandler != null){
-								boolean isShowTaskTimerFlag = AppActivity.mainHandler.getClearFolderAndRemoveTaskTimer();
-								//如果已经弹出框了，就不用关闭了
-								if(isShowTaskTimerFlag){
-									return ;
-								}
-							}
-
 							if(AppActivity.startDialog != null){
 								AppActivity.startDialog.dismiss();
 								AppActivity.startDialog = null;

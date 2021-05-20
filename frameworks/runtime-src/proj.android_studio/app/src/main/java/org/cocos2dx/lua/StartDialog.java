@@ -6,7 +6,7 @@ import android.os.Message;
 import android.view.View;
 import android.widget.TextView;
 
-import com.bigfoot.clearcache.R;
+import com.app.clearcache.R;
 
 import org.cocos2dx.lib.Cocos2dxActivity;
 

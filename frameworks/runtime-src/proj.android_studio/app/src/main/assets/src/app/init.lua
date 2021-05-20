@@ -34,9 +34,6 @@ nk.Const = require("app.common.Const");
 nk.GameState = require("app.util.GameState").new();
 nk.GameFile = require("app.util.GameFile").new();
 
--- 声音管理类
-nk.SoundManager = require("app.manager.SoundManager").new();
-
 -- 公共UI
 nk.ui = require("app.ui.init");
 

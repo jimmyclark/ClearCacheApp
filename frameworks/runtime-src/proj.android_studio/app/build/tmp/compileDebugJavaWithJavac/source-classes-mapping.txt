@@ -4,8 +4,6 @@ com/game/entity/User.java
  com.game.entity.User
 org/cocos2dx/lua/StartDialog.java
  org.cocos2dx.lua.StartDialog
-com/bigfoot/clearcache/BuildConfig.java
- com.bigfoot.clearcache.BuildConfig
 org/cocos2dx/lua/AppActivity.java
  org.cocos2dx.lua.AppActivity
 com/game/core/ILifecycleObserver.java
@@ -23,9 +21,6 @@ com/game/core/Function.java
  com.game.core.Function$6$1
 com/game/utils/FileUtils.java
  com.game.utils.FileUtils
-com/game/core/MainHandler.java
- com.game.core.MainHandler
- com.game.core.MainHandler$1
 com/game/core/Cocos2dxActivityWrapper.java
  com.game.core.Cocos2dxActivityWrapper
  com.game.core.Cocos2dxActivityWrapper$1
@@ -59,3 +54,5 @@ com/game/utils/PermissionUtil.java
  com.game.utils.PermissionUtil$2$1
 org/cocos2dx/lib/QuickHTTPInterface.java
  org.cocos2dx.lib.QuickHTTPInterface
+com/app/clearcache/BuildConfig.java
+ com.app.clearcache.BuildConfig
