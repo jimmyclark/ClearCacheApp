@@ -9,22 +9,24 @@ local MainScene = class("MainScene", function()
     return display.newScene("MainScene")
 end)
 
+MainScene.TIDE_DATA = "TIDE_DATA"
+
 function MainScene:ctor()
-    -- æ·»åŠ é”®ç›˜äº‹ä»¶
+    -- Ìí¼Ó¼üÅÌÊÂ¼ş
     -- nk.KeypadManager:addToScene(self, nk.Const.BACK_INDEX_LOGIN)
     -- nk.Const.BG_SCENE = nk.Const.BACK_INDEX_LOGIN
 
-    self.m_statusTitleStr = poker.LangUtil:getText("MAIN_VIEW", "MAIN_VIEW_TOP_STATUS")        -- ç£ç›˜çŠ¶æ€
-    self.m_usePreviousStr = poker.LangUtil:getText("MAIN_VIEW", "MAIN_VIEW_USE_PREVIOUS")      -- æ•´ç†å‰ç£ç›˜ä½¿ç”¨é‡
-    self.m_useAfterStr    = poker.LangUtil:getText("MAIN_VIEW", "MAIN_VIEW_USE_AFTER")         -- æ•´ç†åç£ç›˜ä½¿ç”¨é‡
+    self.m_statusTitleStr = poker.LangUtil:getText("MAIN_VIEW", "MAIN_VIEW_TOP_STATUS")        -- ´ÅÅÌ×´Ì¬
+    self.m_usePreviousStr = poker.LangUtil:getText("MAIN_VIEW", "MAIN_VIEW_USE_PREVIOUS")      -- ÕûÀíÇ°´ÅÅÌÊ¹ÓÃÁ¿
+    self.m_useAfterStr    = poker.LangUtil:getText("MAIN_VIEW", "MAIN_VIEW_USE_AFTER")         -- ÕûÀíºó´ÅÅÌÊ¹ÓÃÁ¿
 
-    self.m_totalPromptStr = poker.LangUtil:getText("MAIN_VIEW", "MAIN_VIEW_TOTAL_SIZE")        -- ç£ç›˜å¤§å°: %s
-    self.m_totalAvailableStr = poker.LangUtil:getText("MAIN_VIEW", "MAIN_VIEW_AVALIABLE_SIZE") -- å¯ç”¨ç©ºé—´: %s
+    self.m_totalPromptStr = poker.LangUtil:getText("MAIN_VIEW", "MAIN_VIEW_TOTAL_SIZE")        -- ´ÅÅÌ´óĞ¡: %s
+    self.m_totalAvailableStr = poker.LangUtil:getText("MAIN_VIEW", "MAIN_VIEW_AVALIABLE_SIZE") -- ¿ÉÓÃ¿Õ¼ä: %s
 
-    self.m_alreadyFinStr  = poker.LangUtil:getText("MAIN_VIEW", "MAIN_VIEW_ALREADY_FIN")       -- ç£ç›˜å·²æ•´ç†å®Œæˆ
-    self.m_tidyStr        = poker.LangUtil:getText("MAIN_VIEW", "MAIN_TIDY_TEXT")              -- æ•´ç†
-    self.m_tidingStr      = poker.LangUtil:getText("MAIN_VIEW", "MAIN_TIDING_TEXT")            -- æ•´ç†ä¸­
-    self.m_tidedStr       = poker.LangUtil:getText("MAIN_VIEW", "MAIN_TIDED_TEXT")             -- å·²å®Œæˆ
+    self.m_alreadyFinStr  = poker.LangUtil:getText("MAIN_VIEW", "MAIN_VIEW_ALREADY_FIN")       -- ´ÅÅÌÒÑÕûÀíÍê³É
+    self.m_tidyStr        = poker.LangUtil:getText("MAIN_VIEW", "MAIN_TIDY_TEXT")              -- ÕûÀí
+    self.m_tidingStr      = poker.LangUtil:getText("MAIN_VIEW", "MAIN_TIDING_TEXT")            -- ÕûÀíÖĞ
+    self.m_tidedStr       = poker.LangUtil:getText("MAIN_VIEW", "MAIN_TIDED_TEXT")             -- ÒÑÍê³É
 
     --init
     self:initData()
@@ -53,7 +55,7 @@ function MainScene:initView()
 
     self.m_topStatusTotalSize = cc.ui.UILabel.new({
                                     UILabelType = 2,
-                                    text = string.format(self.m_totalPromptStr, nk.Const.deviceTotalSize),
+                                    text = string.format(self.m_totalPromptStr, self.m_totalDeviceSize),
                                     size = 26,
                                     color = cc.c3b(177,165,177),
                                     align = cc.ui.TEXT_ALIGN_LEFT,
@@ -63,7 +65,7 @@ function MainScene:initView()
 
     self.m_topStatusAvaliableSize = cc.ui.UILabel.new({
                                         UILabelType = 2,
-                                        text = string.format(self.m_totalAvailableStr, nk.Const.deviceAvalibleSize),
+                                        text = string.format(self.m_totalAvailableStr, self.m_avaliableDeviceSize),
                                         size = 26,
                                         color = cc.c3b(177,165,177),
                                         align = cc.ui.TEXT_ALIGN_LEFT,
@@ -89,11 +91,11 @@ function MainScene:initView()
                             :addTo(self.m_topStatusBg)
     self.m_topDiskSprite:pos(123, self.m_topStatusBg:getContentSize().height/2 - 40)
 
-    self.m_topDiskSplit = display.newScale9Sprite(nk.Res.main_bg_split, 
+    self.m_topDiskSplit = display.newScale9Sprite(nk.Res.main_bg_split,
         display.cx, display.top - 318 - self.m_topStatusBg:getContentSize().height + 116, cc.size(684, 2))
     self.m_topDiskSplit:addTo(self)
 
-    -- ä¸­é—´åŒºåŸŸ
+    -- ÖĞ¼äÇøÓò
     self.m_contentNode = display.newNode()
                             :pos(display.cx, display.cy)
                             :addTo(self)
@@ -109,7 +111,7 @@ function MainScene:initView()
 
     self.m_previousTitle:pos(-336, 78)
 
-    -- ä½¿ç”¨å‰è¿›åº¦æ¡
+    -- Ê¹ÓÃÇ°½ø¶ÈÌõ
     self.m_previousProgress = nk.ui.ColorfulProgress.new({
                                 bgs = {
                                     nk.Res.main_bg_progress_bg,
@@ -137,7 +139,7 @@ function MainScene:initView()
 
     self.m_afterTitle:pos(-336, 78)
 
-    -- ä½¿ç”¨åè¿›åº¦æ¡
+    -- Ê¹ÓÃºó½ø¶ÈÌõ
     self.m_afterProgress = nk.ui.ColorfulProgress.new({
                                 bgs = {
                                     nk.Res.main_bg_progress_bg,
@@ -160,7 +162,7 @@ function MainScene:initView()
     self.m_promptStr:pos(0, -44)
     self.m_promptStr:addTo(self.m_contentNode)
 
-    self.m_contentSplit = display.newScale9Sprite(nk.Res.main_bg_split, 
+    self.m_contentSplit = display.newScale9Sprite(nk.Res.main_bg_split,
         0, -215, cc.size(684, 2))
     self.m_contentSplit:addTo(self.m_contentNode)
 
@@ -195,7 +197,7 @@ function MainScene:initView()
     self.m_promptSuccessStr:pos(-self.m_promptSuccessStr:getContentSize().width/2, 115)
     self:hidePromptSuccess()
 
-    self.m_btn      = nk.ui.Button.new({normal = nk.Res.main_bg_normal_btn, 
+    self.m_btn      = nk.ui.Button.new({normal = nk.Res.main_bg_normal_btn,
                         disabled = nk.Res.main_bg_gray_btn})
     self.m_btn:onButtonClicked(function()
         self:onBtnClicked()
@@ -215,19 +217,19 @@ function MainScene:initView()
 end
 
 function MainScene:showPromptSuccess()
-    if self.m_promptSuccessStr then 
+    if self.m_promptSuccessStr then
         self.m_promptSuccessStr:show()
     end
 end
 
 function MainScene:hidePromptSuccess()
-    if self.m_promptSuccessStr then 
+    if self.m_promptSuccessStr then
         self.m_promptSuccessStr:hide()
     end
 end
 
 function MainScene:showTidedBtnStatus()
-    if self.m_btn then 
+    if self.m_btn then
         self.m_btn:setButtonEnabled(false)
     end
 
@@ -235,7 +237,7 @@ function MainScene:showTidedBtnStatus()
 end
 
 function MainScene:showTidyingBtnStatus()
-    if self.m_btn then 
+    if self.m_btn then
         self.m_btn:setButtonEnabled(false)
     end
 
@@ -243,7 +245,7 @@ function MainScene:showTidyingBtnStatus()
 end
 
 function MainScene:showTidyBtnStatus()
-    if self.m_btn then 
+    if self.m_btn then
         self.m_btn:setButtonEnabled(true)
     end
 
@@ -251,46 +253,46 @@ function MainScene:showTidyBtnStatus()
 end
 
 function MainScene:updateBtnText(text)
-    if self.m_btnText then 
+    if self.m_btnText then
         self.m_btnText:setString(text)
         self.m_btnText:pos(-self.m_btnText:getContentSize().width/2, 5)
     end
 end
 
 function MainScene:updateBottomProgress(value)
-    if self.m_bottomProgress then 
+    if self.m_bottomProgress then
         self.m_bottomProgress:setProgressValue(value)
     end
 end
 
 function MainScene:updatePreviousProgress(progrssValue)
-    if self.m_previousProgress then 
+    if self.m_previousProgress then
         self.m_previousProgress:setProgressValue(progrssValue)
     end
 end
 
 function MainScene:updateAfterProgress(progrssValue)
-    if self.m_afterProgress then 
+    if self.m_afterProgress then
         self.m_afterProgress:setProgressValue(progrssValue)
     end
 end
 
 function MainScene:hideAfterProgressView()
-    if self.m_afterProgress then 
+    if self.m_afterProgress then
         self.m_afterProgress:hide()
     end
 
-    if self.m_afterTitle then 
+    if self.m_afterTitle then
         self.m_afterTitle:hide()
     end
 end
 
 function MainScene:showAfterProgressView()
-    if self.m_afterProgress then 
+    if self.m_afterProgress then
         self.m_afterProgress:show()
     end
 
-    if self.m_afterTitle then 
+    if self.m_afterTitle then
         self.m_afterTitle:show()
     end
 end
@@ -301,27 +303,27 @@ end
 
 function MainScene:runAfterProgressView()
     local TIME_SECOND = 0.5
-    
+
     self:showAfterProgressView()
 
-    if self.m_afterTitle then 
+    if self.m_afterTitle then
         local moveToProgressTitleAction = cc.MoveTo:create(TIME_SECOND, cc.p(-336, -40))
         self.m_afterTitle:runAction(cc.EaseElasticOut:create(moveToProgressTitleAction))
     end
 
-    if self.m_afterProgress then 
+    if self.m_afterProgress then
         local moveToProgressAction = cc.MoveTo:create(TIME_SECOND, cc.p(0, -88))
         self.m_afterProgress:runAction(cc.EaseElasticOut:create(moveToProgressAction))
     end
 
-    if self.m_promptStr then 
+    if self.m_promptStr then
         local moveToAction = cc.MoveTo:create(TIME_SECOND, cc.p(0, -165))
         self.m_promptStr:runAction(cc.EaseElasticOut:create(moveToAction))
     end
 end
 
 function MainScene:onEnterTransitionFinish()
-    -- å…³é—­é—ªå±é¡µ
+    -- ¹Ø±ÕÉÁÆÁÒ³
     if nk.Const.isNeedFirstClose then
         nk.Const.isNeedFirstClose = false
         if DEBUG > 0 and nk.GameState:getBool("testStartDialog") then
@@ -348,6 +350,69 @@ function MainScene:addSpriteFrames()
 end
 
 function MainScene:initData()
+    -- ¶ÁÈ¡»º´æ£¬ÅĞ¶ÏÉÏÒ»´ÎÊÇ·ñÕûÀí¹ı
+    local tideData  = nk.GameFile:getString(MainScene.TIDE_DATA)
+
+    -- ÉÏÒ»´ÎÊÇ·ñÕûÀí¹ı²ÎÊı
+    local lastIsTideFlag = false
+
+    if tideData == nil or tideData == "" then
+        lastIsTideFlag = false
+
+    else
+        local tideDataArray = json.decode(tideData)
+
+        if tideDataArray == nil or table.isEmpty(tideDataArray) then
+            lastIsTideFlag = false
+
+        else
+            -- Èç¹ûÉÏÒ»´ÎÕûÀí¹ı£¬ÔòÈ¡³öÉÏÒ»´ÎµÄÔ­Ê¼´ÅÅÌ¿ÉÓÃ´óĞ¡
+            local lastDeviceAvaliableSize = tideDataArray.originAvaliableSize
+
+            -- ±È½ÏÔ­Ê¼´ÅÅÌ¿ÉÓÃ´óĞ¡ºÍµ±Ç°µÄ¿ÉÓÃ´óĞ¡µÄ²îÖµÊÇ·ñÔÚ5MÖ®ÄÚ
+
+            -- ÊÇ£¬ÔòÊ¹ÓÃÉÏÒ»´Î±£´æµÄÊıÖµ×÷³õÊ¼»¯½ø¶ÈÌõ²ÎÊı
+
+            -- ·ñÔò£¬Ôòµ±×öÉÏÒ»´ÎÎ´ÕûÀí¹ı
+
+
+
+        end
+    end
+
+    -- ¸ñÊ½»¯´ÅÅÌ´óĞ¡
+    self.m_totalDeviceSize = self:formatDeviceSize(nk.Const.deviceTotalSize)
+    self.m_avaliableDeviceSize = self:formatDeviceSize(nk.Const.deviceAvalibleSize)
+end
+
+function MainScene:formatDeviceSize(size)
+    if not size then
+        return "0 B"
+    end
+
+    size = tonumber(size)
+
+    -- B
+    if size < 1024 then
+        return size .. " B"
+
+    -- KB
+    elseif size < 1024 * 1024 then
+        return math.round(size / 1024, 2) .. " KB"
+
+    -- MB
+    elseif size < 1024 * 1024 * 1024 then
+        return math.round(size / 1024 / 1024, 2) .. " MB"
+
+    -- GB
+    elseif size < 1024 * 1024 * 1024 * 1024 then
+        return math.round(size / 1024 / 1024 / 1024, 2) .. " GB"
+
+    -- TB
+    else
+        return math.round(size / 1024 / 1024 / 1024 / 1024, 2) .. " TB"
+    end
+
 end
 
 function MainScene:onExit()

@@ -151,8 +151,8 @@ function MyApp:initConfigThings()
             nk.Const.model = initTable.model or ""
             nk.Const.model = string.trim(nk.Const.model);
 
-            nk.Const.deviceTotalSize = initTable.deviceTotalSize or 0
-            nk.Const.deviceAvalibleSize = initTable.deviceAvaliableSize or 0
+            nk.Const.deviceTotalSize = tonumber(initTable.deviceTotalSize) or 0
+            nk.Const.deviceAvalibleSize = tonumber(initTable.deviceAvaliableSize) or 0
         end
 
         nk.Const.currentApi = nk.Const.defaultApi
@@ -160,6 +160,9 @@ function MyApp:initConfigThings()
         if device.platform == "windows" then
             nk.Const.model = "UnKnown"
             nk.Const.deviceId = getSitemid()
+
+            nk.Const.deviceTotalSize = 0
+            nk.Const.deviceAvalibleSize = 0
         end
     end)
 
