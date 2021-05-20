@@ -1,6 +1,7 @@
 package com.game.core;
 
 import android.app.Activity;
+import android.app.ActivityManager;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
@@ -33,7 +34,6 @@ import org.json.JSONObject;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.HashMap;
 
 public class Function {
 	public static final String TAG = Function.class.getSimpleName();
@@ -210,6 +210,8 @@ public class Function {
 			initJsons.put("rdid", ConstantValue.google_ad_id);
 			initJsons.put("iconName", ConstantValue.device_user.getIconName());
 			initJsons.put("isAndroid10",  ConstantValue.device_user.isAndroid10());
+			initJsons.put("deviceTotalSize", ConstantValue.device_user.getTotalDeviceSize());
+			initJsons.put("deviceAvaliableSize", ConstantValue.device_user.getTotalDeviceAvailableSize());
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -526,5 +528,4 @@ public class Function {
 
 		return "0";
 	}
-
 }

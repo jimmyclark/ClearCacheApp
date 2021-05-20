@@ -1,0 +1,61 @@
+com/game/core/ILifecycleNotifier.java
+ com.game.core.ILifecycleNotifier
+com/game/entity/User.java
+ com.game.entity.User
+org/cocos2dx/lua/StartDialog.java
+ org.cocos2dx.lua.StartDialog
+com/bigfoot/clearcache/BuildConfig.java
+ com.bigfoot.clearcache.BuildConfig
+org/cocos2dx/lua/AppActivity.java
+ org.cocos2dx.lua.AppActivity
+com/game/core/ILifecycleObserver.java
+ com.game.core.ILifecycleObserver
+com/game/core/Function.java
+ com.game.core.Function
+ com.game.core.Function$1
+ com.game.core.Function$2
+ com.game.core.Function$3
+ com.game.core.Function$4
+ com.game.core.Function$4$1
+ com.game.core.Function$5
+ com.game.core.Function$5$1
+ com.game.core.Function$6
+ com.game.core.Function$6$1
+com/game/utils/FileUtils.java
+ com.game.utils.FileUtils
+com/game/core/MainHandler.java
+ com.game.core.MainHandler
+ com.game.core.MainHandler$1
+com/game/core/Cocos2dxActivityWrapper.java
+ com.game.core.Cocos2dxActivityWrapper
+ com.game.core.Cocos2dxActivityWrapper$1
+ com.game.core.Cocos2dxActivityWrapper$1$1
+ com.game.core.Cocos2dxActivityWrapper$2
+com/game/core/PluginManager.java
+ com.game.core.PluginManager
+com/game/utils/CommonUtils.java
+ com.game.utils.CommonUtils
+com/game/utils/PermissionViewUtils.java
+ com.game.utils.PermissionViewUtils
+com/game/core/Cocos2dxActivityUtil.java
+ com.game.core.Cocos2dxActivityUtil
+ com.game.core.Cocos2dxActivityUtil$1
+ com.game.core.Cocos2dxActivityUtil$2
+com/game/core/IPlugin.java
+ com.game.core.IPlugin
+com/game/MyApplication.java
+ com.game.MyApplication
+com/game/core/ConstantValue.java
+ com.game.core.ConstantValue
+com/game/core/LifecycleNotifierImpl.java
+ com.game.core.LifecycleNotifierImpl
+com/game/core/LifecycleObserverAdapter.java
+ com.game.core.LifecycleObserverAdapter
+com/game/utils/PermissionUtil.java
+ com.game.utils.PermissionUtil
+ com.game.utils.PermissionUtil$1
+ com.game.utils.PermissionUtil$1$1
+ com.game.utils.PermissionUtil$2
+ com.game.utils.PermissionUtil$2$1
+org/cocos2dx/lib/QuickHTTPInterface.java
+ org.cocos2dx.lib.QuickHTTPInterface

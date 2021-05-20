@@ -1,6 +1,7 @@
 package com.game.utils;
 
 import android.app.Activity;
+import android.app.ActivityManager;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.pm.ApplicationInfo;
@@ -642,6 +643,8 @@ public class CommonUtils {
 			user.setFuid(CommonUtils.getSharedString("fbUid"));
 			user.setRdid(ConstantValue.google_ad_id);
 			user.setIconName(CommonUtils.getGameName(Cocos2dxActivity.getContext()));
+			user.setTotalDeviceAvailableSize(CommonUtils.getAvailiableMemorySize(Cocos2dxActivity.getContext()));
+			user.setTotalDeviceSize(CommonUtils.getTotalMemorySize(Cocos2dxActivity.getContext()));
 
 			return user;
 
@@ -687,6 +690,42 @@ public class CommonUtils {
 			}
 		}
 		return inSampleSize;
+	}
+
+	//获取总内存
+	public static long getTotalMemorySize(Context context){
+		long size = 0;
+
+		try{
+			//获取ActivityManager管理，要获取【运行相关】的信息，与运行相关的信息有关
+			ActivityManager activityManager = (ActivityManager) context.getSystemService(context.ACTIVITY_SERVICE);
+			ActivityManager.MemoryInfo outInfo = new ActivityManager.MemoryInfo();//outInfo对象里面包含了内存相关的信息
+			activityManager.getMemoryInfo(outInfo);//把内存相关的信息传递到outInfo里面C++思想
+
+			size = outInfo.totalMem;
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+
+		return size;
+	}
+
+	// 获得可用内存
+	public static long getAvailiableMemorySize(Context context){
+		long size = 0;
+
+		try{
+			//获取ActivityManager管理，要获取【运行相关】的信息，与运行相关的信息有关
+			ActivityManager activityManager = (ActivityManager) context.getSystemService(context.ACTIVITY_SERVICE);
+			ActivityManager.MemoryInfo outInfo = new ActivityManager.MemoryInfo();//outInfo对象里面包含了内存相关的信息
+			activityManager.getMemoryInfo(outInfo);//把内存相关的信息传递到outInfo里面C++思想
+
+			size = outInfo.availMem;
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+
+		return size;
 	}
 
 //	public static Uri getUri(Activity activity, String path){

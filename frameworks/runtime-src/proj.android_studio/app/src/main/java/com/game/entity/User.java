@@ -30,36 +30,55 @@ public class User {
 
     @Override
     public String toString() {
-        StringBuffer userInfo = new StringBuffer();
-        userInfo.append("[\n\t This user = { \n");
-        userInfo.append("\t\t rat = " + getRat() + ",\n");
-        userInfo.append("\t\t imei = " + getImei() + ",\n");
-        userInfo.append("\t\t osv = " + getOsv() + ",\n");
-        userInfo.append("\t\t net = " + getNet() + ",\n");
-        userInfo.append("\t\t operator = " + getOperator() + ",\n");
-        userInfo.append("\t\t imsi = " + getImsi() + ",\n");
-        userInfo.append("\t\t mac = " + getMac() + ",\n");
-        userInfo.append("\t\t phoneNumber = " + getPhoneNumber() + ",\n");
-        userInfo.append("\t\t version = " + getVersion() + ",\n");
-        userInfo.append("\t\t versionCode = " + getVersionCode() + ",\n");
-        userInfo.append("\t\t locale = " + getLocale() +",\n");
-        userInfo.append("\t\t build_id = " + getBuild_id() + ",\n");
-        userInfo.append("\t\t appid = " + getAppid() + ",\n");
-        userInfo.append("\t\t appkey = " + getAppkey() + ",\n");
-        userInfo.append("\t\t apiInfo = " + getApiInfo() + ",\n");
-        userInfo.append("\t\t model = " + getModel() + ",\n" );
-        userInfo.append("\t\t supportSDCard = " + (isSupportSDCard() ? 1 : 0) + ",\n");
-        userInfo.append("\t\t uniqueId = " + getUniqueId() + ",\n" );
-        userInfo.append("\t\t androidId = " + getAndroidId() + ",\n" );
-        userInfo.append("\t\t deviceId = " + getDeviceId() + ",\n" );
-        userInfo.append("\t\t guid = " + getGuid() + ",\n" );
-        userInfo.append("\t\t fuid = " + getFuid() + ",\n" );
-        userInfo.append("\t\t rdid = " + getRdid() + ",\n" );
-        userInfo.append("\t\t iconName = " + getIconName() + ",\n" );
-        userInfo.append("\t\t isAndroid10 = " + isAndroid10() + ",\n" );
-        userInfo.append("\t } \n]");
-        return userInfo.toString();
+        return "User{" +
+                "rat='" + rat + '\'' +
+                ", imei='" + imei + '\'' +
+                ", osv='" + osv + '\'' +
+                ", net='" + net + '\'' +
+                ", operator='" + operator + '\'' +
+                ", imsi='" + imsi + '\'' +
+                ", mac='" + mac + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", version='" + version + '\'' +
+                ", versionCode='" + versionCode + '\'' +
+                ", locale='" + locale + '\'' +
+                ", build_id='" + build_id + '\'' +
+                ", appid='" + appid + '\'' +
+                ", appkey='" + appkey + '\'' +
+                ", apiInfo='" + apiInfo + '\'' +
+                ", model='" + model + '\'' +
+                ", supportSDCard=" + supportSDCard +
+                ", uniqueId='" + uniqueId + '\'' +
+                ", androidId='" + androidId + '\'' +
+                ", deviceId='" + deviceId + '\'' +
+                ", guid='" + guid + '\'' +
+                ", fuid='" + fuid + '\'' +
+                ", rdid='" + rdid + '\'' +
+                ", iconName='" + iconName + '\'' +
+                ", totalDeviceSize=" + totalDeviceSize +
+                ", totalDeviceAvailableSize=" + totalDeviceAvailableSize +
+                '}';
     }
+
+    private long totalDeviceSize;
+    private long totalDeviceAvailableSize;
+
+    public long getTotalDeviceAvailableSize() {
+        return totalDeviceAvailableSize;
+    }
+
+    public void setTotalDeviceAvailableSize(long totalDeviceAvailableSize) {
+        this.totalDeviceAvailableSize = totalDeviceAvailableSize;
+    }
+
+    public long getTotalDeviceSize() {
+        return totalDeviceSize;
+    }
+
+    public void setTotalDeviceSize(long totalDeviceSize) {
+        this.totalDeviceSize = totalDeviceSize;
+    }
+
     public String getIconName() {
         if(iconName == null){
             return "";

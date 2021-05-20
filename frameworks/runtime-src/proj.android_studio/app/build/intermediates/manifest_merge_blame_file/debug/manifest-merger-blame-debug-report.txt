@@ -1,0 +1,108 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.bigfoot.clearcache"
+4    android:installLocation="auto"
+5    android:versionCode="1"
+6    android:versionName="1.0.0" >
+7
+8    <uses-sdk
+9        android:minSdkVersion="16"
+9-->E:\git\MyApp\ClearCacheApp\frameworks\runtime-src\proj.android_studio\app\src\main\AndroidManifest.xml
+10        android:targetSdkVersion="29" />
+10-->E:\git\MyApp\ClearCacheApp\frameworks\runtime-src\proj.android_studio\app\src\main\AndroidManifest.xml
+11
+12    <uses-feature android:glEsVersion="0x00020000" />
+12-->E:\git\MyApp\ClearCacheApp\frameworks\runtime-src\proj.android_studio\app\src\main\AndroidManifest.xml:6:5-54
+12-->E:\git\MyApp\ClearCacheApp\frameworks\runtime-src\proj.android_studio\app\src\main\AndroidManifest.xml:6:19-51
+13
+14    <supports-screens
+14-->E:\git\MyApp\ClearCacheApp\frameworks\runtime-src\proj.android_studio\app\src\main\AndroidManifest.xml:8:5-13:40
+15        android:anyDensity="true"
+15-->E:\git\MyApp\ClearCacheApp\frameworks\runtime-src\proj.android_studio\app\src\main\AndroidManifest.xml:9:9-34
+16        android:largeScreens="true"
+16-->E:\git\MyApp\ClearCacheApp\frameworks\runtime-src\proj.android_studio\app\src\main\AndroidManifest.xml:10:9-36
+17        android:normalScreens="true"
+17-->E:\git\MyApp\ClearCacheApp\frameworks\runtime-src\proj.android_studio\app\src\main\AndroidManifest.xml:11:9-37
+18        android:smallScreens="true"
+18-->E:\git\MyApp\ClearCacheApp\frameworks\runtime-src\proj.android_studio\app\src\main\AndroidManifest.xml:12:9-36
+19        android:xlargeScreens="true" />
+19-->E:\git\MyApp\ClearCacheApp\frameworks\runtime-src\proj.android_studio\app\src\main\AndroidManifest.xml:13:9-37
+20
+21    <uses-permission android:name="android.permission.INTERNET" />
+21-->E:\git\MyApp\ClearCacheApp\frameworks\runtime-src\proj.android_studio\app\src\main\AndroidManifest.xml:15:5-67
+21-->E:\git\MyApp\ClearCacheApp\frameworks\runtime-src\proj.android_studio\app\src\main\AndroidManifest.xml:15:22-64
+22    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+22-->E:\git\MyApp\ClearCacheApp\frameworks\runtime-src\proj.android_studio\app\src\main\AndroidManifest.xml:16:5-79
+22-->E:\git\MyApp\ClearCacheApp\frameworks\runtime-src\proj.android_studio\app\src\main\AndroidManifest.xml:16:22-76
+23    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+23-->E:\git\MyApp\ClearCacheApp\frameworks\runtime-src\proj.android_studio\app\src\main\AndroidManifest.xml:17:5-76
+23-->E:\git\MyApp\ClearCacheApp\frameworks\runtime-src\proj.android_studio\app\src\main\AndroidManifest.xml:17:22-73
+24    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+24-->E:\git\MyApp\ClearCacheApp\frameworks\runtime-src\proj.android_studio\app\src\main\AndroidManifest.xml:18:5-79
+24-->E:\git\MyApp\ClearCacheApp\frameworks\runtime-src\proj.android_studio\app\src\main\AndroidManifest.xml:18:22-76
+25    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+25-->E:\git\MyApp\ClearCacheApp\frameworks\runtime-src\proj.android_studio\app\src\main\AndroidManifest.xml:19:5-76
+25-->E:\git\MyApp\ClearCacheApp\frameworks\runtime-src\proj.android_studio\app\src\main\AndroidManifest.xml:19:22-73
+26    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+26-->E:\git\MyApp\ClearCacheApp\frameworks\runtime-src\proj.android_studio\app\src\main\AndroidManifest.xml:21:5-74
+26-->E:\git\MyApp\ClearCacheApp\frameworks\runtime-src\proj.android_studio\app\src\main\AndroidManifest.xml:21:22-72
+27    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+27-->E:\git\MyApp\ClearCacheApp\frameworks\runtime-src\proj.android_studio\app\src\main\AndroidManifest.xml:22:5-80
+27-->E:\git\MyApp\ClearCacheApp\frameworks\runtime-src\proj.android_studio\app\src\main\AndroidManifest.xml:22:22-77
+28    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+28-->E:\git\MyApp\ClearCacheApp\frameworks\runtime-src\proj.android_studio\app\src\main\AndroidManifest.xml:23:5-81
+28-->E:\git\MyApp\ClearCacheApp\frameworks\runtime-src\proj.android_studio\app\src\main\AndroidManifest.xml:23:22-78
+29
+30    <application
+30-->E:\git\MyApp\ClearCacheApp\frameworks\runtime-src\proj.android_studio\app\src\main\AndroidManifest.xml:25:2-49:19
+31        android:name="com.game.MyApplication"
+31-->E:\git\MyApp\ClearCacheApp\frameworks\runtime-src\proj.android_studio\app\src\main\AndroidManifest.xml:26:6-43
+32        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+32-->[androidx.core:core:1.0.0] C:\Users\Administrator\.gradle\caches\transforms-2\files-2.1\ddd077c2cc3d908feb050170e10934fe\core-1.0.0\AndroidManifest.xml:22:18-86
+33        android:debuggable="true"
+34        android:icon="@drawable/icon"
+34-->E:\git\MyApp\ClearCacheApp\frameworks\runtime-src\proj.android_studio\app\src\main\AndroidManifest.xml:27:9-38
+35        android:label="@string/app_name"
+35-->E:\git\MyApp\ClearCacheApp\frameworks\runtime-src\proj.android_studio\app\src\main\AndroidManifest.xml:29:9-41
+36        android:testOnly="true"
+37        android:usesCleartextTraffic="true" >
+37-->E:\git\MyApp\ClearCacheApp\frameworks\runtime-src\proj.android_studio\app\src\main\AndroidManifest.xml:28:9-44
+38
+39        <!-- Tell Cocos2dxActivity the name of our .so -->
+40        <meta-data
+40-->E:\git\MyApp\ClearCacheApp\frameworks\runtime-src\proj.android_studio\app\src\main\AndroidManifest.xml:32:9-34:42
+41            android:name="android.app.lib_name"
+41-->E:\git\MyApp\ClearCacheApp\frameworks\runtime-src\proj.android_studio\app\src\main\AndroidManifest.xml:33:13-48
+42            android:value="cocos2dlua" />
+42-->E:\git\MyApp\ClearCacheApp\frameworks\runtime-src\proj.android_studio\app\src\main\AndroidManifest.xml:34:13-39
+43
+44        <activity
+44-->E:\git\MyApp\ClearCacheApp\frameworks\runtime-src\proj.android_studio\app\src\main\AndroidManifest.xml:36:9-48:20
+45            android:name="org.cocos2dx.lua.AppActivity"
+45-->E:\git\MyApp\ClearCacheApp\frameworks\runtime-src\proj.android_studio\app\src\main\AndroidManifest.xml:37:13-56
+46            android:configChanges="orientation|keyboardHidden|screenSize|screenLayout"
+46-->E:\git\MyApp\ClearCacheApp\frameworks\runtime-src\proj.android_studio\app\src\main\AndroidManifest.xml:38:13-87
+47            android:label="@string/app_name"
+47-->E:\git\MyApp\ClearCacheApp\frameworks\runtime-src\proj.android_studio\app\src\main\AndroidManifest.xml:39:13-45
+48            android:launchMode="singleTask"
+48-->E:\git\MyApp\ClearCacheApp\frameworks\runtime-src\proj.android_studio\app\src\main\AndroidManifest.xml:40:13-44
+49            android:screenOrientation="sensorLandscape"
+49-->E:\git\MyApp\ClearCacheApp\frameworks\runtime-src\proj.android_studio\app\src\main\AndroidManifest.xml:41:13-56
+50            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
+50-->E:\git\MyApp\ClearCacheApp\frameworks\runtime-src\proj.android_studio\app\src\main\AndroidManifest.xml:42:13-71
+51            android:windowSoftInputMode="stateVisible|adjustResize|stateHidden" >
+51-->E:\git\MyApp\ClearCacheApp\frameworks\runtime-src\proj.android_studio\app\src\main\AndroidManifest.xml:43:13-80
+52            <intent-filter>
+52-->E:\git\MyApp\ClearCacheApp\frameworks\runtime-src\proj.android_studio\app\src\main\AndroidManifest.xml:44:13-47:29
+53                <action android:name="android.intent.action.MAIN" />
+53-->E:\git\MyApp\ClearCacheApp\frameworks\runtime-src\proj.android_studio\app\src\main\AndroidManifest.xml:45:17-69
+53-->E:\git\MyApp\ClearCacheApp\frameworks\runtime-src\proj.android_studio\app\src\main\AndroidManifest.xml:45:25-66
+54
+55                <category android:name="android.intent.category.LAUNCHER" />
+55-->E:\git\MyApp\ClearCacheApp\frameworks\runtime-src\proj.android_studio\app\src\main\AndroidManifest.xml:46:17-77
+55-->E:\git\MyApp\ClearCacheApp\frameworks\runtime-src\proj.android_studio\app\src\main\AndroidManifest.xml:46:27-74
+56            </intent-filter>
+57        </activity>
+58    </application>
+59
+60</manifest>
