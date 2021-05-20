@@ -18,6 +18,9 @@ function MainScene:ctor()
     self.m_usePreviousStr = poker.LangUtil:getText("MAIN_VIEW", "MAIN_VIEW_USE_PREVIOUS")      -- 整理前磁盘使用量
     self.m_useAfterStr    = poker.LangUtil:getText("MAIN_VIEW", "MAIN_VIEW_USE_AFTER")         -- 整理后磁盘使用量
 
+    self.m_totalPromptStr = poker.LangUtil:getText("MAIN_VIEW", "MAIN_VIEW_TOTAL_SIZE")        -- 磁盘大小: %s
+    self.m_totalAvailableStr = poker.LangUtil:getText("MAIN_VIEW", "MAIN_VIEW_AVALIABLE_SIZE") -- 可用空间: %s
+
     self.m_alreadyFinStr  = poker.LangUtil:getText("MAIN_VIEW", "MAIN_VIEW_ALREADY_FIN")       -- 磁盘已整理完成
     self.m_tidyStr        = poker.LangUtil:getText("MAIN_VIEW", "MAIN_TIDY_TEXT")              -- 整理
     self.m_tidingStr      = poker.LangUtil:getText("MAIN_VIEW", "MAIN_TIDING_TEXT")            -- 整理中
@@ -40,11 +43,6 @@ function MainScene:initView()
                     parent = self
                 })
 
-    -- 测试背景
-    -- self.m_testBg = display.newSprite("image/main_test_bg.jpg")
-    --                 :pos(display.cx, display.cy)
-    --                 :addTo(self)
-
     self.m_title = display.newSprite(nk.Res.main_bg_title)
                     :pos(display.cx, display.top - 75)
                     :addTo(self)
@@ -52,6 +50,26 @@ function MainScene:initView()
     -- top
     self.m_topStatusBg = display.newScale9Sprite(nk.Res.main_bg_top_bg, display.cx, display.top - 318, cc.size(664, 310))
     self.m_topStatusBg:addTo(self)
+
+    self.m_topStatusTotalSize = cc.ui.UILabel.new({
+                                    UILabelType = 2,
+                                    text = string.format(self.m_totalPromptStr, nk.Const.deviceTotalSize),
+                                    size = 26,
+                                    color = cc.c3b(177,165,177),
+                                    align = cc.ui.TEXT_ALIGN_LEFT,
+                                })
+                                :pos(235, 100)
+                                :addTo(self.m_topStatusBg)
+
+    self.m_topStatusAvaliableSize = cc.ui.UILabel.new({
+                                        UILabelType = 2,
+                                        text = string.format(self.m_totalAvailableStr, nk.Const.deviceAvalibleSize),
+                                        size = 26,
+                                        color = cc.c3b(177,165,177),
+                                        align = cc.ui.TEXT_ALIGN_LEFT,
+                                    })
+                                    :pos(235, 45)
+                                    :addTo(self.m_topStatusBg)
 
     self.m_topStatusDi = display.newSprite(nk.Res.main_bg_topStatus)
                             :pos(self.m_topStatusBg:getContentSize().width/2, self.m_topStatusBg:getContentSize().height - 32)
@@ -91,7 +109,22 @@ function MainScene:initView()
 
     self.m_previousTitle:pos(-336, 78)
 
-    -- TODO 使用前进度条
+    -- 使用前进度条
+    self.m_previousProgress = nk.ui.ColorfulProgress.new({
+                                bgs = {
+                                    nk.Res.main_bg_progress_bg,
+                                    nk.Res.main_bg_progressBlue,
+                                    nk.Res.main_bg_progressYellow,
+                                    nk.Res.main_bg_progressGray,
+                                },
+
+                                width = 674,
+                                height = 43,
+                                minWidth = 20,
+                            })
+                            :pos(0, 33)
+                            :addTo(self.m_contentNode)
+    self:updatePreviousProgress({0, 0, 0})
 
     self.m_afterTitle = cc.ui.UILabel.new({
                                 UILabelType = 2,
@@ -102,12 +135,29 @@ function MainScene:initView()
                             })
                             :addTo(self.m_contentNode)
 
-    self.m_afterTitle:pos(-336, -40)
+    self.m_afterTitle:pos(-336, 78)
 
-    -- TODO 使用后进度条
+    -- 使用后进度条
+    self.m_afterProgress = nk.ui.ColorfulProgress.new({
+                                bgs = {
+                                    nk.Res.main_bg_progress_bg,
+                                    nk.Res.main_bg_progressBlue,
+                                    nk.Res.main_bg_progressYellow,
+                                    nk.Res.main_bg_progressGray,
+                                },
+
+                                width = 674,
+                                height = 43,
+                                minWidth = 20,
+                            })
+                            :pos(0, 33)
+                            :addTo(self.m_contentNode)
+    self:updateAfterProgress({0, 0, 0})
+
+    self:hideAfterProgressView()
 
     self.m_promptStr = display.newSprite(nk.Res.main_bg_prompt)
-    self.m_promptStr:pos(0, -165)
+    self.m_promptStr:pos(0, -44)
     self.m_promptStr:addTo(self.m_contentNode)
 
     self.m_contentSplit = display.newScale9Sprite(nk.Res.main_bg_split, 
@@ -148,7 +198,7 @@ function MainScene:initView()
     self.m_btn      = nk.ui.Button.new({normal = nk.Res.main_bg_normal_btn, 
                         disabled = nk.Res.main_bg_gray_btn})
     self.m_btn:onButtonClicked(function()
-        print("//TODO 整理")
+        self:onBtnClicked()
     end)
     self.m_btn:addTo(self.m_bottomNode)
 
@@ -162,7 +212,6 @@ function MainScene:initView()
                     :addTo(self.m_btn)
 
     self:showTidyBtnStatus()
-    
 end
 
 function MainScene:showPromptSuccess()
@@ -211,6 +260,63 @@ end
 function MainScene:updateBottomProgress(value)
     if self.m_bottomProgress then 
         self.m_bottomProgress:setProgressValue(value)
+    end
+end
+
+function MainScene:updatePreviousProgress(progrssValue)
+    if self.m_previousProgress then 
+        self.m_previousProgress:setProgressValue(progrssValue)
+    end
+end
+
+function MainScene:updateAfterProgress(progrssValue)
+    if self.m_afterProgress then 
+        self.m_afterProgress:setProgressValue(progrssValue)
+    end
+end
+
+function MainScene:hideAfterProgressView()
+    if self.m_afterProgress then 
+        self.m_afterProgress:hide()
+    end
+
+    if self.m_afterTitle then 
+        self.m_afterTitle:hide()
+    end
+end
+
+function MainScene:showAfterProgressView()
+    if self.m_afterProgress then 
+        self.m_afterProgress:show()
+    end
+
+    if self.m_afterTitle then 
+        self.m_afterTitle:show()
+    end
+end
+
+function MainScene:onBtnClicked()
+    self:runAfterProgressView()
+end
+
+function MainScene:runAfterProgressView()
+    local TIME_SECOND = 0.5
+    
+    self:showAfterProgressView()
+
+    if self.m_afterTitle then 
+        local moveToProgressTitleAction = cc.MoveTo:create(TIME_SECOND, cc.p(-336, -40))
+        self.m_afterTitle:runAction(cc.EaseElasticOut:create(moveToProgressTitleAction))
+    end
+
+    if self.m_afterProgress then 
+        local moveToProgressAction = cc.MoveTo:create(TIME_SECOND, cc.p(0, -88))
+        self.m_afterProgress:runAction(cc.EaseElasticOut:create(moveToProgressAction))
+    end
+
+    if self.m_promptStr then 
+        local moveToAction = cc.MoveTo:create(TIME_SECOND, cc.p(0, -165))
+        self.m_promptStr:runAction(cc.EaseElasticOut:create(moveToAction))
     end
 end
 

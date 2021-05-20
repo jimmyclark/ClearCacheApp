@@ -87,7 +87,7 @@ function Button:onButtonClicked(btnClickedFunc)
 		-- 播放音效
 
         if not self.m_soundNotShowFlag then
-		    nk.SoundManager:playSound(nk.Audio.Effects.CLICK_BUTTON);
+		    -- nk.SoundManager:playSound(nk.Audio.Effects.CLICK_BUTTON);
         end
 
 		btnClickedFunc();

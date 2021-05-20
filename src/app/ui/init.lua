@@ -21,6 +21,7 @@ pokerUI.DJSlidingBar        = import(".DJSlidingBar")
 pokerUI.DJCustomSlidingBar  = import(".DJCustomSlidingBar")
 pokerUI.NickLabel           = import(".NickLabel")
 pokerUI.CustomProgress      = import(".CustomProgress")
+pokerUI.ColorfulProgress    = import(".ColorfulProgress")
 
 --添加点击音效
 function buttonHandler(obj, method)

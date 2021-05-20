@@ -20,6 +20,8 @@ Const.supportSDCard = 0                             -- 是否支持SDCard
 Const.deviceModel   = ""                            -- 设备型号
 Const.customName    = ""                            -- 设备自定义名字
 Const.isAndroid10   = false                         -- 是否为 Android 10 设备
+Const.deviceTotalSize = 0 						 	-- 磁盘总空间
+Const.deviceAvalibleSize = 0 						-- 磁盘可用空间
 
 Const.isNeedFirstClose = true
 

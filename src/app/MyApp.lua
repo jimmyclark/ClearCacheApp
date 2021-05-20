@@ -134,7 +134,6 @@ function MyApp:initConfigThings()
             nk.Const.versionCode = initTable.versionCode or ""
             nk.Const.locale = initTable.locale or ""
             nk.Const.buildId = initTable.buildId or ""
-            nk.Const.rdid = initTable.rdid or ""
             nk.Const.phoneNumber = initTable.phonenumber or ""
             nk.Const.isAndroid10 = (initTable.isAndroid10 or "0") == "1"
             local appleSignin = tonumber(initTable.appleSignin) or 0
@@ -150,8 +149,10 @@ function MyApp:initConfigThings()
             end
 
             nk.Const.model = initTable.model or ""
-
             nk.Const.model = string.trim(nk.Const.model);
+
+            nk.Const.deviceTotalSize = initTable.deviceTotalSize or 0
+            nk.Const.deviceAvalibleSize = initTable.deviceAvaliableSize or 0
         end
 
         nk.Const.currentApi = nk.Const.defaultApi

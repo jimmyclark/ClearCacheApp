@@ -18,6 +18,7 @@ return {
     main_bg_top_bg         = "#top_bg.png",
     main_bg_topDisk        = "#top_disk.png",
     main_bg_topStatus      = "#top_status_di.png",
+    main_bg_progressStencil = "image/common_half_tran.png",
 
     main_bg_frame_lang = {
         plist = "image/lang/zh_CN/main_view.plist",
