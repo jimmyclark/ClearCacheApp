@@ -30,11 +30,11 @@ end
 
 function ColorfulProgress:createColorBg(index, bgName)
 	self.m_foreClippingNode[index] = cc.ClippingNode:create():addTo(self)
-	self.m_clippingRect[index] = display.newScale9Sprite(nk.Res.main_bg_progressStencil, -self.m_bgWidth/2, 0, cc.size(self.m_bgWidth , self.m_bgHeight))
+	self.m_clippingRect[index] = display.newScale9Sprite(nk.Res.main_bg_progressStencil, -self.m_bgWidth/2, 0, cc.size(self.m_bgWidth , self.m_bgHeight + 2))
 	self.m_clippingRect[index]:setAnchorPoint(0,0.5)
 	self.m_foreClippingNode[index]:setStencil(self.m_clippingRect[index])
 
-	self.m_forebgs[index] = display.newScale9Sprite(bgName, 0, 0, cc.size(self.m_bgWidth , self.m_bgHeight - 2))
+	self.m_forebgs[index] = display.newScale9Sprite(bgName, 0, 0, cc.size(self.m_bgWidth , self.m_bgHeight))
 	self.m_forebgs[index]:addTo(self.m_foreClippingNode[index])
 
 	-- 刚开始宽度都设置为0

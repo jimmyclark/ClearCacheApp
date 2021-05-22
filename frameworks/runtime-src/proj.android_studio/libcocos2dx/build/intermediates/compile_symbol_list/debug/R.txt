@@ -1,0 +1,6 @@
+int color clr_normal 0x0
+int color clr_pressed 0x0
+int drawable button 0x0
+int drawable panels_close 0x0
+int string certain 0x0
+int string operator_error 0x0

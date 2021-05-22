@@ -51,7 +51,7 @@ function CustomProgress:setProgressValue(value)
 	else
 		self._fillBg:show()
 
-		self._fillWidth  = self._fillBg:getContentSize().width 
+		self._fillWidth  = self.m_bgWidth
 		self._fillHeight = self._fillBg:getContentSize().height
 
 		local width = self._fillWidth * (value / 100) 

@@ -1,34 +1,34 @@
 [
     {
-        "merged": "E:\\git\\MyApp\\ClearCacheApp\\frameworks\\runtime-src\\proj.android_studio\\app\\build\\intermediates\\res\\merged\\debug\\drawable_icon.png.flat",
-        "source": "E:\\git\\MyApp\\ClearCacheApp\\frameworks\\runtime-src\\proj.android_studio\\app\\src\\main\\res\\drawable\\icon.png"
+        "merged": "D:\\work\\ClearCacheApp\\frameworks\\runtime-src\\proj.android_studio\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_icon.png.flat",
+        "source": "D:\\work\\ClearCacheApp\\frameworks\\runtime-src\\proj.android_studio\\app\\src\\main\\res\\drawable-xxhdpi\\icon.png"
     },
     {
-        "merged": "E:\\git\\MyApp\\ClearCacheApp\\frameworks\\runtime-src\\proj.android_studio\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_icon.png.flat",
-        "source": "E:\\git\\MyApp\\ClearCacheApp\\frameworks\\runtime-src\\proj.android_studio\\app\\src\\main\\res\\drawable-xxhdpi\\icon.png"
+        "merged": "D:\\work\\ClearCacheApp\\frameworks\\runtime-src\\proj.android_studio\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_icon.png.flat",
+        "source": "D:\\work\\ClearCacheApp\\frameworks\\runtime-src\\proj.android_studio\\app\\src\\main\\res\\drawable-hdpi\\icon.png"
     },
     {
-        "merged": "E:\\git\\MyApp\\ClearCacheApp\\frameworks\\runtime-src\\proj.android_studio\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi_icon.png.flat",
-        "source": "E:\\git\\MyApp\\ClearCacheApp\\frameworks\\runtime-src\\proj.android_studio\\app\\src\\main\\res\\drawable-mdpi\\icon.png"
+        "merged": "D:\\work\\ClearCacheApp\\frameworks\\runtime-src\\proj.android_studio\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi_icon.png.flat",
+        "source": "D:\\work\\ClearCacheApp\\frameworks\\runtime-src\\proj.android_studio\\app\\src\\main\\res\\drawable-mdpi\\icon.png"
     },
     {
-        "merged": "E:\\git\\MyApp\\ClearCacheApp\\frameworks\\runtime-src\\proj.android_studio\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi_icon.png.flat",
-        "source": "E:\\git\\MyApp\\ClearCacheApp\\frameworks\\runtime-src\\proj.android_studio\\app\\src\\main\\res\\drawable-xxxhdpi\\icon.png"
+        "merged": "D:\\work\\ClearCacheApp\\frameworks\\runtime-src\\proj.android_studio\\app\\build\\intermediates\\res\\merged\\debug\\drawable_icon.png.flat",
+        "source": "D:\\work\\ClearCacheApp\\frameworks\\runtime-src\\proj.android_studio\\app\\src\\main\\res\\drawable\\icon.png"
     },
     {
-        "merged": "E:\\git\\MyApp\\ClearCacheApp\\frameworks\\runtime-src\\proj.android_studio\\app\\build\\intermediates\\res\\merged\\debug\\drawable-ldpi_icon.png.flat",
-        "source": "E:\\git\\MyApp\\ClearCacheApp\\frameworks\\runtime-src\\proj.android_studio\\app\\src\\main\\res\\drawable-ldpi\\icon.png"
+        "merged": "D:\\work\\ClearCacheApp\\frameworks\\runtime-src\\proj.android_studio\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_icon.png.flat",
+        "source": "D:\\work\\ClearCacheApp\\frameworks\\runtime-src\\proj.android_studio\\app\\src\\main\\res\\drawable-xhdpi\\icon.png"
     },
     {
-        "merged": "E:\\git\\MyApp\\ClearCacheApp\\frameworks\\runtime-src\\proj.android_studio\\app\\build\\intermediates\\res\\merged\\debug\\layout_start_screen.xml.flat",
-        "source": "E:\\git\\MyApp\\ClearCacheApp\\frameworks\\runtime-src\\proj.android_studio\\app\\src\\main\\res\\layout\\start_screen.xml"
+        "merged": "D:\\work\\ClearCacheApp\\frameworks\\runtime-src\\proj.android_studio\\app\\build\\intermediates\\res\\merged\\debug\\layout_start_screen.xml.flat",
+        "source": "D:\\work\\ClearCacheApp\\frameworks\\runtime-src\\proj.android_studio\\app\\src\\main\\res\\layout\\start_screen.xml"
     },
     {
-        "merged": "E:\\git\\MyApp\\ClearCacheApp\\frameworks\\runtime-src\\proj.android_studio\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_icon.png.flat",
-        "source": "E:\\git\\MyApp\\ClearCacheApp\\frameworks\\runtime-src\\proj.android_studio\\app\\src\\main\\res\\drawable-hdpi\\icon.png"
+        "merged": "D:\\work\\ClearCacheApp\\frameworks\\runtime-src\\proj.android_studio\\app\\build\\intermediates\\res\\merged\\debug\\drawable-ldpi_icon.png.flat",
+        "source": "D:\\work\\ClearCacheApp\\frameworks\\runtime-src\\proj.android_studio\\app\\src\\main\\res\\drawable-ldpi\\icon.png"
     },
     {
-        "merged": "E:\\git\\MyApp\\ClearCacheApp\\frameworks\\runtime-src\\proj.android_studio\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_icon.png.flat",
-        "source": "E:\\git\\MyApp\\ClearCacheApp\\frameworks\\runtime-src\\proj.android_studio\\app\\src\\main\\res\\drawable-xhdpi\\icon.png"
+        "merged": "D:\\work\\ClearCacheApp\\frameworks\\runtime-src\\proj.android_studio\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi_icon.png.flat",
+        "source": "D:\\work\\ClearCacheApp\\frameworks\\runtime-src\\proj.android_studio\\app\\src\\main\\res\\drawable-xxxhdpi\\icon.png"
     }
 ]

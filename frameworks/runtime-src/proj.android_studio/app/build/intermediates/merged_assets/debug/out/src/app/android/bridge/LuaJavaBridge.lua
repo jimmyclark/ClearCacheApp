@@ -49,4 +49,24 @@ function M:closeStartScreen()
     self:call_("com/game/core/Function", "closeStartScreen", {}, "()V")
 end
 
+function M:showAlertDialog(params)
+    if not params then 
+        return 
+    end
+
+    local content = params.content 
+    local certain = params.certain 
+    local cancel  = params.cancel
+    local cancelCallFunc =  params.cancelFunc
+
+    local ok,ret = self:call_("com/game/core/Function","showAlertDialog",{content, certain, cancel, cancelCallFunc},
+        "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;I)V")
+
+    if ok then
+        return ret
+    end
+
+    return ""
+end
+
 return M

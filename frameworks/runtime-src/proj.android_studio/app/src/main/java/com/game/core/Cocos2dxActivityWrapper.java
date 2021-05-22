@@ -177,15 +177,12 @@ public abstract class Cocos2dxActivityWrapper extends Cocos2dxActivity implement
 		}
 	}
 
-	@Override
 	protected void onResume() {
 		// TODO Auto-generated method stub
 		super.onResume();
 		Log.d(TAG, "onResume");
 
 		isResumed = true;
-
-		lifecycleNotifier.onResume(this);
 
 		while (true) {
 			Runnable runnable = null;
@@ -215,22 +212,18 @@ public abstract class Cocos2dxActivityWrapper extends Cocos2dxActivity implement
 		}
 	}
 
-	@Override
 	protected void onStop() {
 		// TODO Auto-generated method stub
 		super.onStop();
 		Log.d(TAG, "onStop");
 		isResumed = false;
-		lifecycleNotifier.onStop(this);
 	}
 
-	@Override
 	protected void onDestroy() {
 		// TODO Auto-generated method stub
 		super.onDestroy();
 		Log.d(TAG, "onDestroy");
 		isResumed = false;
-		lifecycleNotifier.onDestroy(this);
 		handlerThread.quit();
 		handlerThread = null;
 	}

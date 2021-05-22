@@ -11,30 +11,81 @@ end)
 
 MainScene.TIDE_DATA = "TIDE_DATA"
 
+MainScene.VAR_DISTANT = 1024 * 1024 * 5  -- æ¯æ¬¡éœ€è¦åˆ¤æ–­ä¸ä¸Šä¸€æ¬¡ä¿å­˜çš„å€¼çš„å·®å€¼
+
+MainScene.VAR_PERCENT = {
+    ["notmove"]  = {2, 7},    -- æ— æ³•ç§»åŠ¨æ–‡ä»¶å æ¯”
+    ["sequence"] = {2, 5},    -- è¿ç»­æ–‡ä»¶çš„å æ¯”
+}
+
+-- å‡å°‘çš„é‡
+MainScene.VAR_TIDE_PERCENT = {
+    [1] = {
+        ["confuse"] = {5, 22},
+        ["sequence"] = {0.2, 0.5},
+    },
+
+    [2] = {
+        ["confuse"] = {2, 4},
+        ["sequence"] = {0.1, 0.25},
+    },
+
+    [3] = {
+        ["confuse"] = {0.5, 3},
+        ["sequence"] = {0.02, 0.05},
+    },
+
+    [4] = {
+        ["confuse"] = {0, 0.5},
+        ["sequence"] = {0, 0.01},
+    },
+}
+
 function MainScene:ctor()
-    -- Ìí¼Ó¼üÅÌÊÂ¼ş
-    -- nk.KeypadManager:addToScene(self, nk.Const.BACK_INDEX_LOGIN)
-    -- nk.Const.BG_SCENE = nk.Const.BACK_INDEX_LOGIN
+    -- æ·»åŠ é”®ç›˜äº‹ä»¶
+    nk.KeypadManager:addToScene(self, 0)
 
-    self.m_statusTitleStr = poker.LangUtil:getText("MAIN_VIEW", "MAIN_VIEW_TOP_STATUS")        -- ´ÅÅÌ×´Ì¬
-    self.m_usePreviousStr = poker.LangUtil:getText("MAIN_VIEW", "MAIN_VIEW_USE_PREVIOUS")      -- ÕûÀíÇ°´ÅÅÌÊ¹ÓÃÁ¿
-    self.m_useAfterStr    = poker.LangUtil:getText("MAIN_VIEW", "MAIN_VIEW_USE_AFTER")         -- ÕûÀíºó´ÅÅÌÊ¹ÓÃÁ¿
+    self.m_statusTitleStr       = poker.LangUtil:getText("MAIN_VIEW", "MAIN_VIEW_TOP_STATUS")               -- ç£ç›˜çŠ¶æ€
+    self.m_usePreviousStr       = poker.LangUtil:getText("MAIN_VIEW", "MAIN_VIEW_USE_PREVIOUS")             -- æ•´ç†å‰ç£ç›˜ä½¿ç”¨é‡
+    self.m_useAfterStr          = poker.LangUtil:getText("MAIN_VIEW", "MAIN_VIEW_USE_AFTER")                -- æ•´ç†åç£ç›˜ä½¿ç”¨é‡
 
-    self.m_deviceStr      = poker.LangUtil:getText("MAIN_VIEW", "MAIN_VIEW_DEVICE_NAME")       -- Éè±¸Ãû³Æ: %s
-    self.m_netStr         = poker.LangUtil:getText("MAIN_VIEW", "MAIN_VIEW_NET_STATUS")        -- ÍøÂç×´Ì¬: %s
-    self.m_totalPromptStr = poker.LangUtil:getText("MAIN_VIEW", "MAIN_VIEW_TOTAL_SIZE")        -- ´ÅÅÌ´óĞ¡: %s
-    self.m_totalAvailableStr = poker.LangUtil:getText("MAIN_VIEW", "MAIN_VIEW_AVALIABLE_SIZE") -- ¿ÉÓÃ¿Õ¼ä: %s
+    self.m_deviceStr            = poker.LangUtil:getText("MAIN_VIEW", "MAIN_VIEW_DEVICE_NAME")              -- è®¾å¤‡åç§°: %s
+    self.m_netStr               = poker.LangUtil:getText("MAIN_VIEW", "MAIN_VIEW_NET_STATUS")               -- ç½‘ç»œçŠ¶æ€: %s
+    self.m_totalPromptStr       = poker.LangUtil:getText("MAIN_VIEW", "MAIN_VIEW_TOTAL_SIZE")               -- ç£ç›˜å¤§å°: %s
+    self.m_totalAvailableStr    = poker.LangUtil:getText("MAIN_VIEW", "MAIN_VIEW_AVALIABLE_SIZE")           -- å¯ç”¨ç©ºé—´: %s
 
-    self.m_alreadyFinStr  = poker.LangUtil:getText("MAIN_VIEW", "MAIN_VIEW_ALREADY_FIN")       -- ´ÅÅÌÒÑÕûÀíÍê³É
-    self.m_tidyStr        = poker.LangUtil:getText("MAIN_VIEW", "MAIN_TIDY_TEXT")              -- ÕûÀí
-    self.m_tidingStr      = poker.LangUtil:getText("MAIN_VIEW", "MAIN_TIDING_TEXT")            -- ÕûÀíÖĞ
-    self.m_tidedStr       = poker.LangUtil:getText("MAIN_VIEW", "MAIN_TIDED_TEXT")             -- ÒÑÍê³É
+    self.m_playingExitStr       = poker.LangUtil:getText("MAIN_VIEW", "MAIN_VIEW_PLAYING_EXIT")             -- æ­£åœ¨æ•´ç†ä¸­ï¼Œä¸­é€”é€€å‡ºä¼šåœæ­¢æ•´ç†ï¼Œç¡®å®šé€€å‡ºï¼Ÿ
+    self.m_playingExitCertain   = poker.LangUtil:getText("MAIN_VIEW", "MAIN_VIEW_PLAYING_EXIT_CERTAIN")     -- ç¡®å®š
+    self.m_playingExitCancel    = poker.LangUtil:getText("MAIN_VIEW", "MAIN_VIEW_PLAYING_EXIT_CANCEL")      -- å–æ¶ˆ
+
+    self.m_alreadyFinStr        = poker.LangUtil:getText("MAIN_VIEW", "MAIN_VIEW_ALREADY_FIN")              -- ç£ç›˜å·²æ•´ç†å®Œæˆ
+    self.m_tidyStr              = poker.LangUtil:getText("MAIN_VIEW", "MAIN_TIDY_TEXT")                     -- æ•´ç†
+    self.m_tidingStr            = poker.LangUtil:getText("MAIN_VIEW", "MAIN_TIDING_TEXT")                   -- æ•´ç†ä¸­
+    self.m_tidedStr             = poker.LangUtil:getText("MAIN_VIEW", "MAIN_TIDED_TEXT")                    -- å·²å®Œæˆ
 
     --init
     self:initData()
 
     self:addSpriteFrames()
     self:initView()
+    self:initViewData()
+end
+
+function MainScene:getMainExitParams()
+    self:stopAllActions()
+    self:updateBottomProgress(self.m_nowProgressValue)
+
+    return {
+        content = self.m_playingExitStr, 
+        certain = self.m_playingExitCertain,
+        cancel  = self.m_playingExitCancel,
+        cancelFunc = function()
+            self.m_backFlag = false
+
+            local time = math.random(0.2, 2)
+            self:refreshProgress(time)
+        end
+    }
 end
 
 function MainScene:run()
@@ -77,7 +128,7 @@ function MainScene:initView()
 
     self.m_topStatusTotalSize = cc.ui.UILabel.new({
                                     UILabelType = 2,
-                                    text = string.format(self.m_totalPromptStr, self.m_totalDeviceSize),
+                                    text = string.format(self.m_totalPromptStr, self:formatDeviceSize(self.m_totalDeviceSize)),
                                     size = 26,
                                     color = cc.c3b(177,165,177),
                                     align = cc.ui.TEXT_ALIGN_LEFT,
@@ -87,7 +138,7 @@ function MainScene:initView()
 
     self.m_topStatusAvaliableSize = cc.ui.UILabel.new({
                                         UILabelType = 2,
-                                        text = string.format(self.m_totalAvailableStr, self.m_avaliableDeviceSize),
+                                        text = string.format(self.m_totalAvailableStr, self:formatDeviceSize(self.m_avaliableDeviceSize)),
                                         size = 26,
                                         color = cc.c3b(177,165,177),
                                         align = cc.ui.TEXT_ALIGN_LEFT,
@@ -117,7 +168,7 @@ function MainScene:initView()
         display.cx, display.top - 318 - self.m_topStatusBg:getContentSize().height + 116, cc.size(684, 2))
     self.m_topDiskSplit:addTo(self)
 
-    -- ÖĞ¼äÇøÓò
+    -- ä¸­é—´åŒºåŸŸ
     self.m_contentNode = display.newNode()
                             :pos(display.cx, display.cy)
                             :addTo(self)
@@ -133,7 +184,7 @@ function MainScene:initView()
 
     self.m_previousTitle:pos(-336, 78)
 
-    -- Ê¹ÓÃÇ°½ø¶ÈÌõ
+    -- ä½¿ç”¨å‰è¿›åº¦æ¡
     self.m_previousProgress = nk.ui.ColorfulProgress.new({
                                 bgs = {
                                     nk.Res.main_bg_progress_bg,
@@ -161,7 +212,7 @@ function MainScene:initView()
 
     self.m_afterTitle:pos(-336, 78)
 
-    -- Ê¹ÓÃºó½ø¶ÈÌõ
+    -- ä½¿ç”¨åè¿›åº¦æ¡
     self.m_afterProgress = nk.ui.ColorfulProgress.new({
                                 bgs = {
                                     nk.Res.main_bg_progress_bg,
@@ -236,6 +287,25 @@ function MainScene:initView()
                     :addTo(self.m_btn)
 
     self:showTidyBtnStatus()
+end
+
+function MainScene:initViewData()
+    -- è®¡ç®—å‡ºå‡ ä¸ªå€¼
+    local confusePercent = 0
+    local sequencePercent = 0
+    local avaliablePercent = 0
+    local cannotPercent = 0
+    
+    if nk.Const.deviceTotalSize > 0 then 
+        cannotPercent    = self.m_cannotMoveDeviceSize / nk.Const.deviceTotalSize * 100
+        sequencePercent  = self.m_sequenceDeviceSize / nk.Const.deviceTotalSize * 100
+        avaliablePercent = tonumber(self.m_avaliableDeviceSize) / nk.Const.deviceTotalSize * 100
+
+        confusePercent    = 100 - cannotPercent - sequencePercent - avaliablePercent
+        self.m_confusedDeviceSize = (confusePercent / 100) * nk.Const.deviceTotalSize
+    end
+
+    self:updatePreviousProgress({confusePercent, sequencePercent, cannotPercent})
 end
 
 function MainScene:showPromptSuccess()
@@ -319,8 +389,58 @@ function MainScene:showAfterProgressView()
     end
 end
 
+function MainScene:isPlaying()
+    return self.m_isPlaying
+end
+
 function MainScene:onBtnClicked()
-    self:runAfterProgressView()
+    self.m_isPlaying = true
+
+    local confuseDeviceSize          = self.m_confusedDeviceSize
+    self.m_afterCanNotMoveDeviceSize = self.m_cannotMoveDeviceSize
+
+    -- æ•´ç†çš„æ¬¡æ•°è¶…è¿‡äº†æœ€å¤§çš„æ¬¡æ•°
+    if self.m_hasTideCount + 1 > #MainScene.VAR_TIDE_PERCENT then 
+        -- ä½¿ç”¨å½“å‰çš„å€¼
+        self.m_afterConfuseDeviceSize    = confuseDeviceSize
+        self.m_afterSequenceDeviceSize   = self.m_sequenceDeviceSize
+
+    -- ç¬¬self.m_hasTideCount + 1æ•´ç†
+    else 
+        local index           = self.m_hasTideCount + 1
+        local confusePercent  = 100 - math.random(MainScene.VAR_TIDE_PERCENT[index]["confuse"][1], MainScene.VAR_TIDE_PERCENT[index]["confuse"][2])
+        local sequencePercent = 100 - math.random(MainScene.VAR_TIDE_PERCENT[index]["sequence"][1], MainScene.VAR_TIDE_PERCENT[index]["sequence"][2])
+
+        self.m_afterConfuseDeviceSize    = confuseDeviceSize * (confusePercent / 100)
+        self.m_afterSequenceDeviceSize   = self.m_sequenceDeviceSize * (sequencePercent  / 100)
+    end
+
+    self.m_afterAvailableDeivceSize = nk.Const.deviceTotalSize - self.m_afterConfuseDeviceSize - self.m_afterSequenceDeviceSize - self.m_afterCanNotMoveDeviceSize
+
+    -- è®¡ç®—å‡ºå‡ ä¸ªå€¼
+    local confusePercent    = 0
+    local sequencePercent   = 0
+    local avaliablePercent  = 0
+    local cannotPercent     = 0
+    
+    if nk.Const.deviceTotalSize > 0 then 
+        cannotPercent     = self.m_afterCanNotMoveDeviceSize / nk.Const.deviceTotalSize * 100
+        sequencePercent   = self.m_afterSequenceDeviceSize / nk.Const.deviceTotalSize * 100
+        confusePercent    = self.m_afterConfuseDeviceSize / nk.Const.deviceTotalSize * 100
+        avaliablePercent  = 100 - cannotPercent - sequencePercent - confusePercent
+    end
+
+    self:updateAfterProgress({confusePercent, sequencePercent, cannotPercent})
+
+    -- è®¡ç®—å½“å‰é›¶ç¢æ–‡ä»¶çš„ç©ºé—´ * æ¯ä¸ªMB ä¸º 0.5 - 1ç§’
+    self.m_needTime = (confuseDeviceSize / 1024 / 1024 / 512) * math.random(0.5, 2)
+
+    if self.m_hasTideCount + 1 > #MainScene.VAR_TIDE_PERCENT then 
+        self.m_needTime = math.random(1, 2)
+    end
+
+    self:showTidyingBtnStatus()
+    self:runProgress(self.m_needTime)
 end
 
 function MainScene:runAfterProgressView()
@@ -345,7 +465,7 @@ function MainScene:runAfterProgressView()
 end
 
 function MainScene:onEnterTransitionFinish()
-    -- ¹Ø±ÕÉÁÆÁÒ³
+    -- å…³é—­é—ªå±é¡µ
     if nk.Const.isNeedFirstClose then
         nk.Const.isNeedFirstClose = false
         if DEBUG > 0 and nk.GameState:getBool("testStartDialog") then
@@ -372,39 +492,119 @@ function MainScene:addSpriteFrames()
 end
 
 function MainScene:initData()
-    -- ¶ÁÈ¡»º´æ£¬ÅĞ¶ÏÉÏÒ»´ÎÊÇ·ñÕûÀí¹ı
+    -- è¯»å–ç¼“å­˜ï¼Œåˆ¤æ–­ä¸Šä¸€æ¬¡æ˜¯å¦æ•´ç†è¿‡
+    nk.GameFile:readToCache("ClearCache")
     local tideData  = nk.GameFile:getString(MainScene.TIDE_DATA)
 
-    -- ÉÏÒ»´ÎÊÇ·ñÕûÀí¹ı²ÎÊı
+    -- ä¸Šä¸€æ¬¡æ˜¯å¦æ•´ç†è¿‡å‚æ•°
     local lastIsTideFlag = false
+    local tideDataArray
+
 
     if tideData == nil or tideData == "" then
         lastIsTideFlag = false
 
     else
-        local tideDataArray = json.decode(tideData)
+        tideDataArray = json.decode(tideData)
 
         if tideDataArray == nil or table.isEmpty(tideDataArray) then
             lastIsTideFlag = false
 
         else
-            -- Èç¹ûÉÏÒ»´ÎÕûÀí¹ı£¬ÔòÈ¡³öÉÏÒ»´ÎµÄÔ­Ê¼´ÅÅÌ¿ÉÓÃ´óĞ¡
+            -- å¦‚æœä¸Šä¸€æ¬¡æ•´ç†è¿‡ï¼Œåˆ™å–å‡ºä¸Šä¸€æ¬¡çš„åŸå§‹ç£ç›˜å¯ç”¨å¤§å°
             local lastDeviceAvaliableSize = tideDataArray.originAvaliableSize
 
-            -- ±È½ÏÔ­Ê¼´ÅÅÌ¿ÉÓÃ´óĞ¡ºÍµ±Ç°µÄ¿ÉÓÃ´óĞ¡µÄ²îÖµÊÇ·ñÔÚ5MÖ®ÄÚ
+            -- æ¯”è¾ƒåŸå§‹ç£ç›˜å¯ç”¨å¤§å°å’Œå½“å‰çš„å¯ç”¨å¤§å°çš„å·®å€¼æ˜¯å¦åœ¨5Mä¹‹å†…
+            if math.abs(lastDeviceAvaliableSize - nk.Const.deviceAvalibleSize) <= MainScene.VAR_DISTANT then 
+                print("//åŸå§‹ç£ç›˜å¤§å° - å½“å‰ç£ç›˜å¤§å° <= 5M åˆ™ä½¿ç”¨ä¸Šä¸€æ¬¡æ•´ç†åçš„å‚æ•°")
+                lastIsTideFlag = true 
 
-            -- ÊÇ£¬ÔòÊ¹ÓÃÉÏÒ»´Î±£´æµÄÊıÖµ×÷³õÊ¼»¯½ø¶ÈÌõ²ÎÊı
+                self.m_lastDeviceAvaliableSize = lastDeviceAvaliableSize
 
-            -- ·ñÔò£¬Ôòµ±×öÉÏÒ»´ÎÎ´ÕûÀí¹ı
-
-
-
+            else
+                lastIsTideFlag = false 
+            end
         end
     end
 
-    -- ¸ñÊ½»¯´ÅÅÌ´óĞ¡
-    self.m_totalDeviceSize = self:formatDeviceSize(nk.Const.deviceTotalSize)
-    self.m_avaliableDeviceSize = self:formatDeviceSize(nk.Const.deviceAvalibleSize)
+    -- ä¸Šä¸€æ¬¡æ˜¯å¦æ•´ç†è¿‡
+    self.m_lastIsTideFlag = lastIsTideFlag
+
+    -- å¦‚æœä¸Šä¸€æ¬¡æ•´ç†è¿‡
+    if self.m_lastIsTideFlag then 
+        -- ä»æ•´ç†æ•°æ®ä¸­è·å–å‚æ•°
+        self.m_avaliableDeviceSize  = tideDataArray.avaliableSize            -- ä¸Šä¸€æ¬¡æ•´ç†åçš„å¯ç”¨ç©ºé—´
+        self.m_confusedDeviceSize   = tideDataArray.confuseSize              -- ä¸Šä¸€æ¬¡æ•´ç†åçš„é›¶ç¢ç©ºé—´
+        self.m_sequenceDeviceSize   = tideDataArray.sequenceSize             -- ä¸Šä¸€æ¬¡æ•´ç†åçš„è¿ç»­ç©ºé—´
+        self.m_cannotMoveDeviceSize = tideDataArray.cannotMoveSize           -- ä¸Šä¸€æ¬¡æ•´ç†åçš„æ— æ³•ç§»åŠ¨çš„ç©ºé—´
+        self.m_hasTideCount         = tideDataArray.tideCount                -- ä¸€å…±æ•´ç†çš„æ¬¡æ•°
+
+    else
+        self.m_avaliableDeviceSize  = nk.Const.deviceAvalibleSize
+        self.m_cannotMoveDeviceSize = nk.Const.deviceTotalSize * (math.random(MainScene.VAR_PERCENT["notmove"][1], MainScene.VAR_PERCENT["notmove"][2]) / 100)
+        self.m_sequenceDeviceSize   = nk.Const.deviceTotalSize * (math.random(MainScene.VAR_PERCENT["sequence"][1], MainScene.VAR_PERCENT["sequence"][2]) / 100)
+        self.m_hasTideCount         = 0
+    end
+
+    self.m_totalDeviceSize = nk.Const.deviceTotalSize
+end
+
+function MainScene:runProgress(needTime)
+    self.m_curProgressNeedTime = needTime / 100     -- æ¯è¿›1çš„è¿›åº¦éœ€è¦çš„è€—æ—¶
+
+    self.m_nowProgressValue = 0
+
+    local time = math.random(0.2, 2)
+    self:performWithDelay(function()
+        self:refreshProgress(time)
+    end, time)
+end
+
+function MainScene:refreshProgress(time)
+    self.m_nowProgressValue = self.m_nowProgressValue + time
+
+    self:updateBottomProgress(self.m_nowProgressValue)
+
+    if self.m_nowProgressValue > 100 then 
+        self:runAfterProgressView()
+        self:showPromptSuccess()
+        self:showTidedBtnStatus()
+
+        self.m_isPlaying = false
+        self:saveCurStatus()
+        return 
+    end
+
+    if self.m_backFlag then 
+        -- ç‰©ç†é”®ç‚¹å‡»
+        print("ç‰©ç†é”®ç‚¹å‡»")
+        return 
+    end
+
+    local time = math.random(0.2, 2)
+    self:performWithDelay(function()
+        self:refreshProgress(time)
+    end, time)
+end
+
+function MainScene:saveCurStatus()
+    -- ä¿å­˜å‚æ•°
+    local needSaveParams = {}
+    needSaveParams.avaliableSize    = self.m_afterAvailableDeivceSize
+    needSaveParams.confuseSize      = self.m_afterConfuseDeviceSize
+    needSaveParams.sequenceSize     = self.m_afterSequenceDeviceSize 
+    needSaveParams.cannotMoveSize   = self.m_afterCanNotMoveDeviceSize
+    needSaveParams.tideCount        = self.m_hasTideCount + 1
+
+    if self.m_lastIsTideFlag then 
+        needSaveParams.originAvaliableSize = self.m_lastDeviceAvaliableSize
+
+    else
+        needSaveParams.originAvaliableSize = self.m_avaliableDeviceSize
+    end
+
+    nk.GameFile:putString(MainScene.TIDE_DATA, json.encode(needSaveParams))
+    nk.GameFile:commit()
 end
 
 function MainScene:formatDeviceSize(size)
@@ -434,7 +634,6 @@ function MainScene:formatDeviceSize(size)
     else
         return math.round(size / 1024 / 1024 / 1024 / 1024, 2) .. " TB"
     end
-
 end
 
 function MainScene:onExit()
@@ -444,6 +643,14 @@ function MainScene:onCleanup()
 end
 
 function MainScene:onEnter()
+end
+
+function MainScene:setBackingFlag(backFlag)
+    self.m_backFlag = backFlag
+end
+
+function MainScene:isBackingFlag()
+    return self.m_backFlag
 end
 
 return MainScene

@@ -1,0 +1,7 @@
+org.cocos2dx.lib
+color clr_normal
+color clr_pressed
+drawable button
+drawable panels_close
+string certain
+string operator_error

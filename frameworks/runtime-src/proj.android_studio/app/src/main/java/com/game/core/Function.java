@@ -5,6 +5,7 @@ import android.app.ActivityManager;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
@@ -15,9 +16,13 @@ import android.graphics.Paint;
 import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Build;
+import android.os.Looper;
 import android.os.Vibrator;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.KeyEvent;
+
+import androidx.appcompat.app.AlertDialog;
 
 import com.game.utils.CommonUtils;
 import com.game.utils.FileUtils;
@@ -34,6 +39,8 @@ import org.json.JSONObject;
 
 import java.io.File;
 import java.io.IOException;
+
+import static android.os.Looper.prepare;
 
 public class Function {
 	public static final String TAG = Function.class.getSimpleName();
@@ -511,5 +518,67 @@ public class Function {
 		}
 
 		return "0";
+	}
+
+	public static void showAlertDialog(final String content, final String certain, final String cancel, final int callBack){
+		new Thread(new Runnable() {
+			@Override
+			public void run() {
+				try{
+					Looper.prepare();
+					AlertDialog dialog = new AlertDialog.Builder(Cocos2dxActivity.getContext())
+							.setMessage(content)
+							.setPositiveButton(certain, new DialogInterface.OnClickListener() {
+								public void onClick(DialogInterface dialogInterface, int i) {
+									android.os.Process.killProcess(android.os.Process.myPid());
+								}
+							})
+							.setNegativeButton(cancel, new DialogInterface.OnClickListener() {
+								public void onClick(DialogInterface dialogInterface, int i) {
+									Cocos2dxActivityUtil.runOnResumed(new Runnable() {
+										@Override
+										public void run() {
+											Cocos2dxActivityUtil.runOnGLThread(new Runnable() {
+												@Override
+												public void run() {
+													if (callBack != -1) {
+														Cocos2dxLuaJavaBridge.callLuaFunctionWithString(callBack, "cancel");
+													}
+												}
+											});
+										}
+									});
+								}
+							})
+							.create();
+
+					dialog.setOnKeyListener(new DialogInterface.OnKeyListener() {
+						@Override
+						public boolean onKey(DialogInterface dialogInterface, int i, KeyEvent keyEvent) {
+							if(i == KeyEvent.KEYCODE_BACK && keyEvent.getAction() == KeyEvent.ACTION_DOWN){
+								Cocos2dxActivityUtil.runOnResumed(new Runnable() {
+									@Override
+									public void run() {
+										Cocos2dxActivityUtil.runOnGLThread(new Runnable() {
+											@Override
+											public void run() {
+												if (callBack != -1) {
+													Cocos2dxLuaJavaBridge.callLuaFunctionWithString(callBack, "cancel");
+												}
+											}
+										});
+									}
+								});
+							}
+							return false;
+						}
+					});
+					dialog.show();
+					Looper.loop();
+				}catch(Exception e){
+					e.printStackTrace();
+				}
+			}
+		}).start();
 	}
 }

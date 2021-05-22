@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "E:\\git\\MyApp\\ClearCacheApp\\frameworks\\runtime-src\\proj.android_studio\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-v28\\values-v28.xml",
+            "outputFile": "D:\\work\\ClearCacheApp\\frameworks\\runtime-src\\proj.android_studio\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-v28\\values-v28.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-2\\files-2.1\\584e857762f0434ac7315f033e9ccea0\\appcompat-1.0.0\\res\\values-v28\\values-v28.xml",
+                    "source": "C:\\Users\\lenvov\\.gradle\\caches\\transforms-2\\files-2.1\\584e857762f0434ac7315f033e9ccea0\\appcompat-1.0.0\\res\\values-v28\\values-v28.xml",
                     "from": {
                         "startLines": "2,3,4,8",
                         "startColumns": "4,4,4,4",

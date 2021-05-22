@@ -9,7 +9,7 @@
 DEBUG = 5
 
 -- 打包时间 只在非正式包时使用
-BUILD_TIME = "20210506_171701"
+BUILD_TIME = "20210522_142702"
 
 -- 日志开关
 LOG_OPEN = (DEBUG > 0) and 1 or 0

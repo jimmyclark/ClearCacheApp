@@ -29,9 +29,6 @@
       <change beforePath="$PROJECT_DIR$/proj.android/src/com/bigfoot/th/utils/CommonUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/proj.android/src/com/bigfoot/th/utils/CommonUtils.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/proj.android/src/com/bigfoot/th/utils/PermissionUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/proj.android/src/com/bigfoot/th/utils/PermissionUtil.java" afterDir="false" />
     </list>
-    <ignored path="runtime-src.iws" />
-    <ignored path=".idea/workspace.xml" />
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -43,102 +40,21 @@
   <component name="FavoritesManager">
     <favorites_list name="runtime-src" />
   </component>
-  <component name="FileEditorManager">
-    <leaf />
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
-    <option name="width" value="1936" />
-    <option name="height" value="1056" />
-  </component>
-  <component name="ProjectView">
-    <navigator currentView="ProjectPane" proportions="" version="1">
-      <foldersAlwaysOnTop value="true" />
-    </navigator>
-    <panes>
-      <pane id="Scope" />
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="runtime-src" type="b2602c69:ProjectViewProjectNode" />
-              <item name="runtime-src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="runtime-src" type="b2602c69:ProjectViewProjectNode" />
-              <item name="runtime-src" type="462c0819:PsiDirectoryNode" />
-              <item name="proj.android" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="runtime-src" type="b2602c69:ProjectViewProjectNode" />
-              <item name="runtime-src" type="462c0819:PsiDirectoryNode" />
-              <item name="proj.android" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="runtime-src" type="b2602c69:ProjectViewProjectNode" />
-              <item name="runtime-src" type="462c0819:PsiDirectoryNode" />
-              <item name="proj.android" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="runtime-src" type="b2602c69:ProjectViewProjectNode" />
-              <item name="runtime-src" type="462c0819:PsiDirectoryNode" />
-              <item name="proj.android" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="game" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="runtime-src" type="b2602c69:ProjectViewProjectNode" />
-              <item name="runtime-src" type="462c0819:PsiDirectoryNode" />
-              <item name="proj.android" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="game" type="462c0819:PsiDirectoryNode" />
-              <item name="th" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="runtime-src" type="b2602c69:ProjectViewProjectNode" />
-              <item name="runtime-src" type="462c0819:PsiDirectoryNode" />
-              <item name="proj.android" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="game" type="462c0819:PsiDirectoryNode" />
-              <item name="th" type="462c0819:PsiDirectoryNode" />
-              <item name="utils" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="runtime-src" type="b2602c69:ProjectViewProjectNode" />
-              <item name="runtime-src" type="462c0819:PsiDirectoryNode" />
-              <item name="proj.android_studio" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-      <pane id="PackagesPane" />
-    </panes>
+  <component name="ProjectId" id="1ssFc8axz0Ot22I4F4nEJzQoPe9" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
-    <property name="android.sdk.path" value="D:/software/as/sdk" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="android.sdk.path" value="$PROJECT_DIR$/../../../../software/as/sdk" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/proj.android_studio" />
     <property name="settings.editor.selected.configurable" value="configurable.group.build" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
-  </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
   </component>
   <component name="RunManager">
     <configuration name="&lt;template&gt;" type="Applet" default="true" selected="false">
@@ -241,35 +157,6 @@
       <is-autoscroll-to-source value="true" />
     </todo-panel>
   </component>
-  <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="0" />
-    <layout>
-      <window_info id="Resources Explorer" order="0" />
-      <window_info id="Capture Tool" order="1" />
-      <window_info id="Image Layers" order="2" />
-      <window_info active="true" content_ui="combo" id="Project" order="3" sideWeight="0.4991708" visible="true" weight="0.24973656" />
-      <window_info id="Structure" order="4" weight="0.25" />
-      <window_info id="Captures" order="5" weight="0.25" />
-      <window_info id="Designer" order="6" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.21917808" visible="true" />
-      <window_info anchor="bottom" id="Version Control" order="7" sideWeight="0.49789253" weight="0.32998884" />
-      <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.23919916" weight="0.54444444" />
-      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.7808219" side_tool="true" visible="true" />
-      <window_info anchor="bottom" id="Favorites" order="10" sideWeight="0.50052685" weight="0.2488889" />
-      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Palette&#9;" order="3" />
-      <window_info anchor="right" id="Capture Analysis" order="4" />
-      <window_info anchor="right" id="Theme Preview" order="5" />
-    </layout>
-  </component>
   <component name="UnknownFeatures">
     <option featureType="com.intellij.fileTypeFactory" implementationName="*.lua" />
   </component>
@@ -281,17 +168,11 @@
       <collection />
     </option>
   </component>
-  <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/proj.android/assets/src/app/MyApp.lua">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="684">
-          <caret line="54" column="34" lean-forward="true" selection-start-line="54" selection-start-column="34" selection-end-line="54" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/proj.android/src/com/game/th/utils/CommonUtils.java">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
+  <component name="WindowStateProjectService">
+    <state x="549" y="167" key="FileChooserDialogImpl" timestamp="1621653522415">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1621653522415" />
   </component>
   <component name="masterDetails">
     <states>
