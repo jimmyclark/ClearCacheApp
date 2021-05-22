@@ -31,21 +31,10 @@ function KeypadManager:addToScene(scene, mtype)
         end
 
         if event.key == "back" or tonumber(event.key or 0) == 149 then
-            if nk.PopupManager:isTopLevelPop() then
-                if nk.PopupManager:isForceUpdatePopup() then
-                    self:showExitPopup()
-                    return
-                end
-
-                if nk.PopupManager:isNotBackCancel() then
-                    return
-                end
-
-                if not nk.PopupManager:isBackCanClosePopu() then
-                    nk.PopupManager:removeTopPopupIf()
-                end
-
-                return
+            if scene:isPlaying() then 
+                local mainParam = scene:getMainExitParams()
+                nk.Native:showAlertDialog(mainParam)
+                return 
             end
 
         elseif event.key == "menu" then

@@ -9,6 +9,9 @@ return {
         MAIN_VIEW_TOTAL_SIZE 	= "磁盘大小： %s",
         MAIN_VIEW_AVALIABLE_SIZE= "可用空间： %s",
 
+        MAIN_VIEW_PLAYING_EXIT  = "正在整理中，中途退出会停止整理，确定退出？",
+        MAIN_VIEW_PLAYING_EXIT_CERTAIN = "确定",
+        MAIN_VIEW_PLAYING_EXIT_CANCEL = "取消",
         MAIN_VIEW_ALREADY_FIN	= "磁盘已整理完成",
         MAIN_TIDY_TEXT 			= "整 理",
         MAIN_TIDING_TEXT 		= "整理中",
