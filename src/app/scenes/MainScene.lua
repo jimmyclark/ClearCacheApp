@@ -72,10 +72,19 @@ function MainScene:ctor()
 end
 
 function MainScene:getMainExitParams()
+    self:stopAllActions()
+    self:updateBottomProgress(self.m_nowProgressValue)
+
     return {
         content = self.m_playingExitStr, 
         certain = self.m_playingExitCertain,
         cancel  = self.m_playingExitCancel,
+        cancelFunc = function()
+            self.m_backFlag = false
+
+            local time = math.random(0.2, 2)
+            self:refreshProgress(time)
+        end
     }
 end
 
@@ -426,6 +435,10 @@ function MainScene:onBtnClicked()
     -- 计算当前零碎文件的空间 * 每个MB 为 0.5 - 1秒
     self.m_needTime = (confuseDeviceSize / 1024 / 1024 / 512) * math.random(0.5, 2)
 
+    if self.m_hasTideCount + 1 > #MainScene.VAR_TIDE_PERCENT then 
+        self.m_needTime = math.random(1, 2)
+    end
+
     self:showTidyingBtnStatus()
     self:runProgress(self.m_needTime)
 end
@@ -562,6 +575,12 @@ function MainScene:refreshProgress(time)
         return 
     end
 
+    if self.m_backFlag then 
+        -- 物理键点击
+        print("物理键点击")
+        return 
+    end
+
     local time = math.random(0.2, 2)
     self:performWithDelay(function()
         self:refreshProgress(time)
@@ -624,6 +643,14 @@ function MainScene:onCleanup()
 end
 
 function MainScene:onEnter()
+end
+
+function MainScene:setBackingFlag(backFlag)
+    self.m_backFlag = backFlag
+end
+
+function MainScene:isBackingFlag()
+    return self.m_backFlag
 end
 
 return MainScene

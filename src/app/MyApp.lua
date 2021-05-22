@@ -24,20 +24,20 @@ end
 function MyApp:onEnterBackground()
     sendClientLog("应用切到后台")
 
-    if nk.SoundManager:isMusicCanPlay() then
-        audio.pauseMusic()
-    end
+    -- if nk.SoundManager:isMusicCanPlay() then
+    --     audio.pauseMusic()
+    -- end
 end
 
 function MyApp:onEnterForeground()
     sendClientLog("应用恢复前台")
 
-    if nk.SoundManager:isMusicCanPlay() then
-        audio.resumeMusic()
+    -- if nk.SoundManager:isMusicCanPlay() then
+    --     audio.resumeMusic()
 
-    else
-        audio.pauseMusic()
-    end
+    -- else
+    --     audio.pauseMusic()
+    -- end
 
     self:closeAllScreenPopup()
 end

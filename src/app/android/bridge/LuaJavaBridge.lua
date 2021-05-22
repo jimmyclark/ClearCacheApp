@@ -57,9 +57,10 @@ function M:showAlertDialog(params)
     local content = params.content 
     local certain = params.certain 
     local cancel  = params.cancel
+    local cancelCallFunc =  params.cancelFunc
 
-    local ok,ret = self:call_("com/game/core/Function","showAlertDialog",{content, certain, cancel},
-        "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V")
+    local ok,ret = self:call_("com/game/core/Function","showAlertDialog",{content, certain, cancel, cancelCallFunc},
+        "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;I)V")
 
     if ok then
         return ret
