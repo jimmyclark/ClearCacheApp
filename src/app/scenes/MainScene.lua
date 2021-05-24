@@ -76,7 +76,7 @@ function MainScene:getMainExitParams()
     self:updateBottomProgress(self.m_nowProgressValue)
 
     return {
-        content = self.m_playingExitStr, 
+        content = self.m_playingExitStr,
         certain = self.m_playingExitCertain,
         cancel  = self.m_playingExitCancel,
         cancelFunc = function()
@@ -92,11 +92,8 @@ function MainScene:run()
 end
 
 function MainScene:initView()
-    self.m_bg = display.newBackgroud({
-                    file   = nk.Res.main_bg,
-                    pos    = cc.p(display.cx, display.cy),
-                    parent = self
-                })
+    self.m_bg = display.newScale9Sprite(nk.Res.main_bg,display.cx, display.cy,cc.size(display.width, display.height))
+                    :addTo(self)
 
     self.m_title = display.newSprite(nk.Res.main_bg_title)
                     :pos(display.cx, display.top - 75)
@@ -295,8 +292,8 @@ function MainScene:initViewData()
     local sequencePercent = 0
     local avaliablePercent = 0
     local cannotPercent = 0
-    
-    if nk.Const.deviceTotalSize > 0 then 
+
+    if nk.Const.deviceTotalSize > 0 then
         cannotPercent    = self.m_cannotMoveDeviceSize / nk.Const.deviceTotalSize * 100
         sequencePercent  = self.m_sequenceDeviceSize / nk.Const.deviceTotalSize * 100
         avaliablePercent = tonumber(self.m_avaliableDeviceSize) / nk.Const.deviceTotalSize * 100
@@ -400,13 +397,13 @@ function MainScene:onBtnClicked()
     self.m_afterCanNotMoveDeviceSize = self.m_cannotMoveDeviceSize
 
     -- 整理的次数超过了最大的次数
-    if self.m_hasTideCount + 1 > #MainScene.VAR_TIDE_PERCENT then 
+    if self.m_hasTideCount + 1 > #MainScene.VAR_TIDE_PERCENT then
         -- 使用当前的值
         self.m_afterConfuseDeviceSize    = confuseDeviceSize
         self.m_afterSequenceDeviceSize   = self.m_sequenceDeviceSize
 
     -- 第self.m_hasTideCount + 1整理
-    else 
+    else
         local index           = self.m_hasTideCount + 1
         local confusePercent  = 100 - math.random(MainScene.VAR_TIDE_PERCENT[index]["confuse"][1], MainScene.VAR_TIDE_PERCENT[index]["confuse"][2])
         local sequencePercent = 100 - math.random(MainScene.VAR_TIDE_PERCENT[index]["sequence"][1], MainScene.VAR_TIDE_PERCENT[index]["sequence"][2])
@@ -422,8 +419,8 @@ function MainScene:onBtnClicked()
     local sequencePercent   = 0
     local avaliablePercent  = 0
     local cannotPercent     = 0
-    
-    if nk.Const.deviceTotalSize > 0 then 
+
+    if nk.Const.deviceTotalSize > 0 then
         cannotPercent     = self.m_afterCanNotMoveDeviceSize / nk.Const.deviceTotalSize * 100
         sequencePercent   = self.m_afterSequenceDeviceSize / nk.Const.deviceTotalSize * 100
         confusePercent    = self.m_afterConfuseDeviceSize / nk.Const.deviceTotalSize * 100
@@ -435,7 +432,7 @@ function MainScene:onBtnClicked()
     -- 计算当前零碎文件的空间 * 每个MB 为 0.5 - 1秒
     self.m_needTime = (confuseDeviceSize / 1024 / 1024 / 512) * math.random(0.5, 2)
 
-    if self.m_hasTideCount + 1 > #MainScene.VAR_TIDE_PERCENT then 
+    if self.m_hasTideCount + 1 > #MainScene.VAR_TIDE_PERCENT then
         self.m_needTime = math.random(1, 2)
     end
 
@@ -515,14 +512,14 @@ function MainScene:initData()
             local lastDeviceAvaliableSize = tideDataArray.originAvaliableSize
 
             -- 比较原始磁盘可用大小和当前的可用大小的差值是否在5M之内
-            if math.abs(lastDeviceAvaliableSize - nk.Const.deviceAvalibleSize) <= MainScene.VAR_DISTANT then 
+            if math.abs(lastDeviceAvaliableSize - nk.Const.deviceAvalibleSize) <= MainScene.VAR_DISTANT then
                 print("//原始磁盘大小 - 当前磁盘大小 <= 5M 则使用上一次整理后的参数")
-                lastIsTideFlag = true 
+                lastIsTideFlag = true
 
                 self.m_lastDeviceAvaliableSize = lastDeviceAvaliableSize
 
             else
-                lastIsTideFlag = false 
+                lastIsTideFlag = false
             end
         end
     end
@@ -531,7 +528,7 @@ function MainScene:initData()
     self.m_lastIsTideFlag = lastIsTideFlag
 
     -- 如果上一次整理过
-    if self.m_lastIsTideFlag then 
+    if self.m_lastIsTideFlag then
         -- 从整理数据中获取参数
         self.m_avaliableDeviceSize  = tideDataArray.avaliableSize            -- 上一次整理后的可用空间
         self.m_confusedDeviceSize   = tideDataArray.confuseSize              -- 上一次整理后的零碎空间
@@ -565,20 +562,20 @@ function MainScene:refreshProgress(time)
 
     self:updateBottomProgress(self.m_nowProgressValue)
 
-    if self.m_nowProgressValue > 100 then 
+    if self.m_nowProgressValue > 100 then
         self:runAfterProgressView()
         self:showPromptSuccess()
         self:showTidedBtnStatus()
 
         self.m_isPlaying = false
         self:saveCurStatus()
-        return 
+        return
     end
 
-    if self.m_backFlag then 
+    if self.m_backFlag then
         -- 物理键点击
         print("物理键点击")
-        return 
+        return
     end
 
     local time = math.random(0.2, 2)
@@ -592,11 +589,11 @@ function MainScene:saveCurStatus()
     local needSaveParams = {}
     needSaveParams.avaliableSize    = self.m_afterAvailableDeivceSize
     needSaveParams.confuseSize      = self.m_afterConfuseDeviceSize
-    needSaveParams.sequenceSize     = self.m_afterSequenceDeviceSize 
+    needSaveParams.sequenceSize     = self.m_afterSequenceDeviceSize
     needSaveParams.cannotMoveSize   = self.m_afterCanNotMoveDeviceSize
     needSaveParams.tideCount        = self.m_hasTideCount + 1
 
-    if self.m_lastIsTideFlag then 
+    if self.m_lastIsTideFlag then
         needSaveParams.originAvaliableSize = self.m_lastDeviceAvaliableSize
 
     else
