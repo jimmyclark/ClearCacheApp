@@ -29,7 +29,7 @@ import PackageScripts
 import EncodeRes
 
 # 需要生成的版本 Debug 5 还是 release 0
-DEBUG        = 5
+DEBUG        = 0
 # 版本号
 VERSION      = "1.0.0"
 
@@ -38,7 +38,7 @@ VERSION      = "1.0.0"
 TEST_UPDATE  = 0
 
 GAME_API_MAP = {
-    "package"     : "com.bigfoot.clearcache",
+    "package"     : "com.app.clearcache",
     "versionCode" : 1,
 }
 
