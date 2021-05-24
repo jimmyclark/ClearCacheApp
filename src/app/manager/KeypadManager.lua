@@ -31,12 +31,14 @@ function KeypadManager:addToScene(scene, mtype)
         end
 
         if event.key == "back" or tonumber(event.key or 0) == 149 then
-            if scene:isPlaying() then 
+            if scene:isPlaying() then
                 scene:setBackingFlag(true)
                 local mainParam = scene:getMainExitParams()
                 nk.Native:showAlertDialog(mainParam)
-                return 
+                return
             end
+
+            cc.Director:getInstance():endToLua()
 
         elseif event.key == "menu" then
 
