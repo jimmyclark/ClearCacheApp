@@ -21,6 +21,7 @@ import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.os.Build;
 import android.os.Environment;
+import android.os.StatFs;
 import android.provider.Settings.Secure;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
@@ -695,18 +696,26 @@ public class CommonUtils {
 	//获取总内存
 	public static long getTotalMemorySize(Context context){
 		long size = 0;
-
+//
+//		try{
+//			//获取ActivityManager管理，要获取【运行相关】的信息，与运行相关的信息有关
+//			ActivityManager activityManager = (ActivityManager) context.getSystemService(context.ACTIVITY_SERVICE);
+//			ActivityManager.MemoryInfo outInfo = new ActivityManager.MemoryInfo();//outInfo对象里面包含了内存相关的信息
+//			activityManager.getMemoryInfo(outInfo);//把内存相关的信息传递到outInfo里面C++思想
+//
+//			size = outInfo.totalMem;
+//		}catch(Exception e){
+//			e.printStackTrace();
+//		}
 		try{
-			//获取ActivityManager管理，要获取【运行相关】的信息，与运行相关的信息有关
-			ActivityManager activityManager = (ActivityManager) context.getSystemService(context.ACTIVITY_SERVICE);
-			ActivityManager.MemoryInfo outInfo = new ActivityManager.MemoryInfo();//outInfo对象里面包含了内存相关的信息
-			activityManager.getMemoryInfo(outInfo);//把内存相关的信息传递到outInfo里面C++思想
-
-			size = outInfo.totalMem;
+			File path = Environment.getDataDirectory();
+			StatFs stat = new StatFs(path.getPath());
+			long blockSize = stat.getBlockSize();
+			long totalBlocks = stat.getBlockCount();
+			size = totalBlocks * blockSize;
 		}catch(Exception e){
 			e.printStackTrace();
 		}
-
 		return size;
 	}
 
@@ -714,13 +723,23 @@ public class CommonUtils {
 	public static long getAvailiableMemorySize(Context context){
 		long size = 0;
 
-		try{
-			//获取ActivityManager管理，要获取【运行相关】的信息，与运行相关的信息有关
-			ActivityManager activityManager = (ActivityManager) context.getSystemService(context.ACTIVITY_SERVICE);
-			ActivityManager.MemoryInfo outInfo = new ActivityManager.MemoryInfo();//outInfo对象里面包含了内存相关的信息
-			activityManager.getMemoryInfo(outInfo);//把内存相关的信息传递到outInfo里面C++思想
+//		try{
+//			//获取ActivityManager管理，要获取【运行相关】的信息，与运行相关的信息有关
+//			ActivityManager activityManager = (ActivityManager) context.getSystemService(context.ACTIVITY_SERVICE);
+//			ActivityManager.MemoryInfo outInfo = new ActivityManager.MemoryInfo();//outInfo对象里面包含了内存相关的信息
+//			activityManager.getMemoryInfo(outInfo);//把内存相关的信息传递到outInfo里面C++思想
+//
+//			size = outInfo.availMem;
+//		}catch(Exception e){
+//			e.printStackTrace();
+//		}
 
-			size = outInfo.availMem;
+		try{
+			File path = Environment.getDataDirectory();
+			StatFs stat = new StatFs(path.getPath());
+			long blockSize = stat.getBlockSize();
+			long availableBlocks = stat.getAvailableBlocks();
+			size = availableBlocks * blockSize;
 		}catch(Exception e){
 			e.printStackTrace();
 		}

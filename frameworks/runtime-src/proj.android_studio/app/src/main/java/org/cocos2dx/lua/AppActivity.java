@@ -83,12 +83,7 @@ public class AppActivity extends Cocos2dxActivityWrapper {
 
         addShortcutNeeded(R.string.app_name, R.drawable.icon);
 
-        if (getIntent() != null) {
-            Intent myIntent = getIntent();
-            ConstantValue.google_push_action = myIntent.getStringExtra("bf_push_action");
-            ConstantValue.google_push_id = myIntent.getStringExtra("bf_push_id");
-            ConstantValue.google_push_sid = myIntent.getStringExtra("bf_login_type");
-        }
+        setKeepScreenOn(true);
 
 		//初始化用户信息
 		ConstantValue.device_user = CommonUtils.initUserInfo();
@@ -96,8 +91,8 @@ public class AppActivity extends Cocos2dxActivityWrapper {
         if (getApp() != null && !getApp().isStartDialogShow() && startDialog == null) {
 			try{
 	            startDialog = new StartDialog(this, android.R.style.Theme_Translucent_NoTitleBar);
-	            startDialog.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-					WindowManager.LayoutParams.FLAG_FULLSCREEN);
+//	            startDialog.getWindow().setFlags(WindowManager.LayoutParams.FLAG_,
+//					WindowManager.LayoutParams.FLAG_FULLSCREEN);
 	            hideDialogNavigationBar(startDialog);
 	            startDialog.setContentView(R.layout.start_screen);
 	            startDialog.setCancelable(false);
