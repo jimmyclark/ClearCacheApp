@@ -14,31 +14,31 @@ MainScene.TIDE_DATA = "TIDE_DATA"
 MainScene.VAR_DISTANT = 1024 * 1024 * 5  -- 每次需要判断与上一次保存的值的差值
 
 MainScene.VAR_PERCENT = {
-    ["notmove"]  = {2, 7},    -- 无法移动文件占比
-    ["sequence"] = {2, 5},    -- 连续文件的占比
+    ["notmove"]  = {10, 15},     -- 无法移动文件占比
+    ["sequence"] = {15, 20},    -- 连续文件的占比
 }
 
 -- 减少的量
 MainScene.VAR_TIDE_PERCENT = {
     [1] = {
-        ["confuse"] = {5, 22},
-        ["sequence"] = {0.2, 0.5},
-    },
-
-    [2] = {
-        ["confuse"] = {2, 4},
-        ["sequence"] = {0.1, 0.25},
-    },
-
-    [3] = {
-        ["confuse"] = {0.5, 3},
+        ["confuse"] = {0.5, 1},
         ["sequence"] = {0.02, 0.05},
     },
 
-    [4] = {
-        ["confuse"] = {0, 0.5},
-        ["sequence"] = {0, 0.01},
+    [2] = {
+        ["confuse"] = {0.1, 0,2},
+        ["sequence"] = {0.02 * 0.02, 0.05 * 0.05},
     },
+
+    [3] = {
+        ["confuse"] = {0.01, 0.02},
+        ["sequence"] = {0.02 * 0.02 * 0.02, 0.05 * 0.05 * 0.05},
+    },
+
+    -- [4] = {
+    --     ["confuse"] = {0, 0.5},
+    --     ["sequence"] = {0, 0.01},
+    -- },
 }
 
 function MainScene:ctor()
@@ -57,6 +57,7 @@ function MainScene:ctor()
     self.m_playingExitStr       = poker.LangUtil:getText("MAIN_VIEW", "MAIN_VIEW_PLAYING_EXIT")             -- 正在整理中，中途退出会停止整理，确定退出？
     self.m_playingExitCertain   = poker.LangUtil:getText("MAIN_VIEW", "MAIN_VIEW_PLAYING_EXIT_CERTAIN")     -- 确定
     self.m_playingExitCancel    = poker.LangUtil:getText("MAIN_VIEW", "MAIN_VIEW_PLAYING_EXIT_CANCEL")      -- 取消
+    self.m_isPlayingPrompt      = poker.LangUtil:getText("MAIN_VIEW", "MAIN_VIEW_PLAYING_PROMPT")           -- 正在整理中，中途不能退出
 
     self.m_alreadyFinStr        = poker.LangUtil:getText("MAIN_VIEW", "MAIN_VIEW_ALREADY_FIN")              -- 磁盘已整理完成
     self.m_tidyStr              = poker.LangUtil:getText("MAIN_VIEW", "MAIN_TIDY_TEXT")                     -- 整理
@@ -110,7 +111,7 @@ function MainScene:initView()
                                     color = cc.c3b(177,165,177),
                                     align = cc.ui.TEXT_ALIGN_LEFT,
                                 })
-                                :pos(275, 220)
+                                :pos(275, 210)
                                 :addTo(self.m_topStatusBg)
 
     self.m_topStatusNetName = cc.ui.UILabel.new({
@@ -246,7 +247,7 @@ function MainScene:initView()
                                 text   = {
                                     fontSize = 24,
                                     fontColor = cc.c3b(255,255,255),
-                                    pos = cc.p(0, -1),
+                                    pos = cc.p(0, -0.5),
                                 },
                                 width = 674,
                                 height = 30,
@@ -284,6 +285,32 @@ function MainScene:initView()
                     :addTo(self.m_btn)
 
     self:showTidyBtnStatus()
+
+    if DEBUG > 0 then
+        self.m_clearBtn = nk.ui.Button.new(nk.Res.main_bg_normal_btn)
+        self.m_clearBtn:pos(0, -130)
+        self.m_clearBtn:addTo(self.m_bottomNode)
+
+        self.m_clearBtn:onButtonClicked(function()
+            local path = cc.FileUtils:getInstance():getWritablePath() .. "ClearCache.dat"
+
+            path = string.gsub(path , "\\","/")
+
+            if (cc.FileUtils:getInstance():isFileExist(path)) then
+                cc.FileUtils:getInstance():removeFile(path)
+            end
+        end)
+
+        local text = cc.ui.UILabel.new({
+                            UILabelType = 2,
+                            text = "清理数据",
+                            size = 46,
+                            color = cc.c3b(255, 255, 255),
+                            align = cc.ui.TEXT_ALIGN_CENTER,
+                        })
+        text:pos(-text:getContentSize().width/2, 0)
+                        :addTo(self.m_clearBtn)
+    end
 end
 
 function MainScene:initViewData()
@@ -305,8 +332,21 @@ function MainScene:initViewData()
     self:updatePreviousProgress({confusePercent, sequencePercent, cannotPercent})
 end
 
-function MainScene:showPromptSuccess()
+function MainScene:showPromptSuccess(text)
     if self.m_promptSuccessStr then
+        if text then
+            self.m_promptSuccessStr:setString(text)
+
+        else
+            self.m_promptSuccessStr:setString(self.m_alreadyFinStr)
+
+            if self.m_topStatusAvaliableSize then
+                self.m_topStatusAvaliableSize:setString(string.format(self.m_totalAvailableStr, self:formatDeviceSize(self.m_afterAvailableDeivceSize)))
+            end
+        end
+
+        self.m_promptSuccessStr:pos(-self.m_promptSuccessStr:getContentSize().width/2, 115)
+
         self.m_promptSuccessStr:show()
     end
 end
@@ -350,6 +390,7 @@ end
 
 function MainScene:updateBottomProgress(value)
     if self.m_bottomProgress then
+        value = math.round(value, 0)
         self.m_bottomProgress:setProgressValue(value)
     end
 end
@@ -429,11 +470,21 @@ function MainScene:onBtnClicked()
 
     self:updateAfterProgress({confusePercent, sequencePercent, cannotPercent})
 
-    -- 计算当前零碎文件的空间 * 每个MB 为 0.5 - 1秒
+    -- 计算当前零碎文件的空间 * 每个MB 为 0.5 - 2秒
     self.m_needTime = (confuseDeviceSize / 1024 / 1024 / 512) * math.random(0.5, 2)
+
+    if self.m_needTime > 60 * 3 then
+        self.m_needTime = 60 * 3
+    end
 
     if self.m_hasTideCount + 1 > #MainScene.VAR_TIDE_PERCENT then
         self.m_needTime = math.random(1, 2)
+    end
+
+    self:showPromptSuccess(self.m_isPlayingPrompt)
+
+    if DEBUG > 0 then
+        self:showPromptSuccess(self.m_isPlayingPrompt .. "(" .. (self.m_hasTideCount + 1) .. ")")
     end
 
     self:showTidyingBtnStatus()
@@ -538,8 +589,8 @@ function MainScene:initData()
 
     else
         self.m_avaliableDeviceSize  = nk.Const.deviceAvalibleSize
-        self.m_cannotMoveDeviceSize = nk.Const.deviceTotalSize * (math.random(MainScene.VAR_PERCENT["notmove"][1], MainScene.VAR_PERCENT["notmove"][2]) / 100)
-        self.m_sequenceDeviceSize   = nk.Const.deviceTotalSize * (math.random(MainScene.VAR_PERCENT["sequence"][1], MainScene.VAR_PERCENT["sequence"][2]) / 100)
+        self.m_cannotMoveDeviceSize = (nk.Const.deviceTotalSize - self.m_avaliableDeviceSize) * (math.random(MainScene.VAR_PERCENT["notmove"][1], MainScene.VAR_PERCENT["notmove"][2]) / 100)
+        self.m_sequenceDeviceSize   = (nk.Const.deviceTotalSize - self.m_avaliableDeviceSize) * (math.random(MainScene.VAR_PERCENT["sequence"][1], MainScene.VAR_PERCENT["sequence"][2]) / 100)
         self.m_hasTideCount         = 0
     end
 
